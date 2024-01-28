@@ -21,3 +21,7 @@ This project will be entirely made in c++. To get started just clone the repo an
 ## Project status
 
 The project is now entierely done. 
+
+## Addition information
+
+This project was moved from gitlab to github so the data might be incorrect
