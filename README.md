@@ -4,7 +4,7 @@ Project for a POO course in the Technical University of Compiègne
 
 ## Game Splendor Duel 
 
-Desc
+Description
 
 ## Getting started
 
