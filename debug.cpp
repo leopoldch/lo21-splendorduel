@@ -1,21 +1,24 @@
 #include "debug.h"
 
-int main(){
+int main() {
 
-    char tmp;
-    cout<<"Bienvenue dans le jeu splendor duel ! "<<endl;
-    cout<<"voulez vous commencer une nouvelle partie ou finir la dernière partie en cours ? [N/R]"<<endl;
-    cin>>tmp;
-    while(tmp!='R' && tmp!='N'){
-        cout<<"voulez vous commencer une nouvelle partie ou finir la dernière partie en cours ? [N/R]"<<endl;
-        cin>>tmp;
-    }
-    if(tmp == 'N'){
-        gameFromScratch();
-    }
-    else{
-        gameFromJson();
-    }
+  char tmp;
+  cout << "Bienvenue dans le jeu splendor duel ! " << endl;
+  cout << "voulez vous commencer une nouvelle partie ou finir la dernière "
+          "partie en cours ? [N/R]"
+       << endl;
+  cin >> tmp;
+  while (tmp != 'R' && tmp != 'N') {
+    cout << "voulez vous commencer une nouvelle partie ou finir la dernière "
+            "partie en cours ? [N/R]"
+         << endl;
+    cin >> tmp;
+  }
+  if (tmp == 'N') {
+    gameFromScratch();
+  } else {
+    gameFromJson();
+  }
 
-    return 0;
+  return 0;
 }
