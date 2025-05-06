@@ -1,8 +1,8 @@
-# Rapport1
+#Rapport1
 
-# LO21: Projet Splendor duel
+#LO21 : Projet Splendor duel
 
-# Rapport 1:
+#Rapport 1:
 
 Petri Gaspard, Leopold Chappuis, Fouinat Quentin, Ghitu Alexandru (co-reponsable), Vert Aubin (co-responsable)
 
@@ -14,12 +14,12 @@ Pour mener à bien ce projet, nous devrons mobiliser les différentes connaissan
 
 Dans ce premier rapport, vous trouverez une analyse des concepts, la liste des premieres tâches effectuées ainsi que la liste des futures tâches que nous avons identifiées.
 
-# Liste des tâches déjà réalisées et leur répartition
+#Liste des tâches déjà réalisées et leur répartition
 
 - Diagrame UML: Gaspard, Leopold, Aubin
 - Analyse des concepts: Quentin, Alexandru
 
-# Liste des tâches à venir avec répartition
+#Liste des tâches à venir avec répartition
 
 Cette liste est vouée à être modifiée et remplie au fur et à mesure de l’avancement de notre réalisation. En effet, de nombreux problèmes et tâches viendront probablement remplir cette liste davantage. Également, en fonction de notre avancée, certaines tâches pourront changer de nature de priorité.
 
@@ -46,7 +46,7 @@ Cette liste est vouée à être modifiée et remplie au fur et à mesure de l’
 - faire une IA un peu plus recherchée qu’avec du hasard
 - ajuster le nombre d’emplacements/jetons pour règle supplémentaire
 
-# Analyse des concepts
+#Analyse des concepts
 
 ## But du jeu
 
@@ -295,12 +295,12 @@ Le joueur doit effectuer **une et une seule** des trois actions suivantes :
 - Prendre **1 jeton Or pour réserver 1 carte Joaillerie**.
 - Acheter **1 carte Joaillerie**.
 
-# UML
+#UML
 
 ![UML.png](UML.png)
 
 Il faut noter que les héritages représentés dans cet UML sont implicitement considérés comme exclusifs.
 
-# Affinité dans le groupe
+#Affinité dans le groupe
 
 Tous le monde s’entend bien. Nous travaillons généralement tous ensemble afin de nous mettre d’accord sur nos façons de procéder. En effet, nous pensons que le fait de nous regrouper à 5 nous permet de faire des choix réfléchis et nous permet de nous mettre d’accord rapidement sur d’éventuels points de désaccord.

@@ -1,4 +1,4 @@
-# Rapport final
+#Rapport final
 
 ## LO21 : Projet Splendor Duel
 
@@ -62,53 +62,138 @@ L’utilisation du Design Pattern strategy permet de garantir un ajout ultérieu
 
 **Remarque**:
 
-Après avoir développé l’IA, nous avons pu tester le programme principal (main) en faisant jouer une IA contre une autre IA. L’intérêt de cette manipulation a été de vérifier le bon fonctionnement d’une partie dans son intégralité et d’assurer que le programme ne tombe pas dans des états particuliers que nous n’aurions pas suspecté en ayant joué nous mêmes. Par exemple, nous nous sommes rendus compte que nous n’avions pas géré le cas dans lequel un joueur ou une IA voulait piocher un jeton sur le plateau alors qu’il ne restait plus que des jetons or et que le joueur ne pouvait plus réserver de carte (donc ne peut pas piocher de jetons or), ce qui provoquait une boucle infinie. De nombreux cas similaires à celui-ci ont pu être identifiés grâce à cette ‘simulation’. Ainsi, le développement de l’IA nous a permis d’apporter plus de robustesse à notre programme principal.
+Après avoir développé l’IA, nous avons pu tester le programme principal (main)
+en faisant jouer une IA contre une autre
+    IA.L’intérêt de cette manipulation a été de vérifier le bon fonctionnement
+        d’une partie dans son intégralité et d’assurer que le programme ne tombe
+            pas dans des états particuliers que nous n’aurions pas suspecté en
+                ayant joué nous mêmes.Par exemple,
+    nous nous sommes rendus compte que nous n’avions pas géré le cas dans lequel
+            un joueur ou une IA voulait piocher un jeton sur le plateau alors
+                qu’il ne restait plus que des jetons or
+        et que le joueur ne pouvait plus réserver de
+        carte(donc ne peut pas piocher de jetons or),
+    ce qui provoquait une boucle infinie.De nombreux cas similaires à celui
+        - ci ont pu être identifiés grâce à cette ‘simulation’.Ainsi,
+    le développement de l’IA nous a permis d’apporter plus de
+    robustesse à notre programme principal
+        .
 
-#### Carte
+    ####Carte
 
-Nous avons une classe mère Card et 2 classes filles Royal_Card et JewelryCard. L’idée de l’héritage permet de conserver les propriétés communes aux 2 classes filles afin de ne pas avoir à dupliquer le code et à respecter le principe SOLID.
+    Nous avons une classe mère Card et
+    2 classes filles Royal_Card et JewelryCard
+        .L’idée de l’héritage permet de conserver les propriétés communes aux
+    2 classes filles afin de ne pas avoir à dupliquer le code et à respecter le
+    principe SOLID
+        .
 
-#### Tirage
+    ####Tirage
 
-Cette classe constitue une représentation de chacun des trois tirages disponibles dans le jeu. Chaque tirage est essentiellement une collection de cartes, et pour simplifier la gestion de ces cartes, nous avons opté pour l’utilisation de vecteurs. Cette approche offre une souplesse significative, notamment lors du remplissage du tirage, où il suffit de piocher une carte depuis la pioche et de l’ajouter au tirage en utilisant la fonction “push” associée aux vecteurs.
+    Cette classe constitue une représentation de chacun des trois tirages
+    disponibles dans le jeu.Chaque tirage est essentiellement une
+    collection de cartes,
+    et pour simplifier la gestion de ces cartes,
+    nous avons opté pour
+    l’utilisation de vecteurs.Cette approche offre une souplesse significative,
+    notamment lors du remplissage du tirage,
+    où il suffit de piocher une carte depuis la pioche et de l’ajouter au tirage
+        en utilisant la fonction “push” associée aux vecteurs.
 
-L’affichage du contenu complet d’un tirage est également rendu aisé grâce à l’opérateur “<<”, permettant ainsi une visualisation rapide pendant le déroulement du jeu. De plus, une fonction clé, “getCarte()”, a été implémentée pour faciliter le transfert d’une carte du tirage vers la main du joueur.
+        L’affichage du contenu complet d’un tirage est
+        également rendu aisé grâce à l’opérateur “
+        <<”,
+    permettant ainsi une visualisation rapide pendant le
+    déroulement du jeu.De plus,
+    une fonction clé, “getCarte()”,
+    a été implémentée pour faciliter le transfert d’une carte du tirage vers la
+    main du joueur.
 
-Étant donné qu’il n’y a que trois tirages dans le jeu, nous avons introduit un attribut statique de classe pour limiter le nombre maximal de tirages. Cette approche assure la présence constante de seulement trois instances de la classe de tirage, garantissant ainsi une gestion efficace et cohérente de cette composante du jeu.
+    Étant donné qu’il n’y a que trois tirages dans le jeu,
+    nous avons introduit un attribut statique de classe pour limiter le nombre
+    maximal de tirages.Cette approche assure la présence constante de seulement
+    trois instances de la classe de tirage,
+    garantissant ainsi une gestion efficace et cohérente de cette
+    composante du jeu.
 
-En résumé, la classe tirage permet non seulement la gestion des cartes, mais également l’affichage et le transfert fluide de ces cartes entre le tirage et la main du joueur. L’utilisation judicieuse des vecteurs et l’utilisation des membres statiques contribuent à la robustesse et à l’efficacité de cette composante.
+    En résumé,
+    la classe tirage permet non seulement la gestion des cartes,
+    mais également l’affichage et le transfert fluide de ces cartes entre le
+    tirage et la main du joueur
+        .L’utilisation judicieuse des vecteurs et l’utilisation des membres
+    statiques contribuent à la robustesse et à l’efficacité de cette composante.
 
-#### Pioche
+    ####Pioche
 
-La classe Pioche est conçue pour représenter une collection de cartes de joaillerie, principalement implémentée à l’aide d’un vecteur. À l’initialisation, chaque pioche est mélangée pour introduire une composante aléatoire dans le jeu. Comme dans le cas des tirages, un attribut statique est utilisé pour restreindre le nombre de pioches créées à un maximum de 3.
+    La classe Pioche est conçue pour représenter une collection de cartes de
+    joaillerie,
+    principalement implémentée à l’aide d’un vecteur.À l’initialisation,
+    chaque pioche est mélangée pour introduire une composante
+    aléatoire dans le jeu.Comme dans le cas des tirages,
+    un attribut statique est utilisé pour
+    restreindre le nombre de pioches créées à un maximum de 3.
 
-#### Sac
+    ####Sac
 
-La classe Sac représente une collection de jetons, structurée au moyen d’un vecteur. Contrairement à d’autres composants du jeu, aucune composante aléatoire n’est intégrée dans cette classe. L’aspect aléatoire est introduit lors du remplissage du plateau, où les jetons sont attribués de manière aléatoire. La classe Sac adopte également le design pattern ‘Singleton’, reflétant la singularité de cette entité dans l’ensemble du jeu, car il n’y a qu’un seul sac utilisé. Le Sac n’a pas de responsabilité pour les jetons, qui sont crées et libérés avec le Jeu.
+    La classe Sac représente une collection de jetons,
+    structurée au moyen d’un vecteur.Contrairement à d’autres composants du jeu,
+    aucune composante aléatoire n’est intégrée dans cette classe.L’aspect
+    aléatoire est introduit lors du remplissage du plateau,
+    où les jetons sont attribués de manière aléatoire.La classe Sac adopte
+    également le design pattern ‘Singleton’,
+    reflétant la singularité de cette entité dans l’ensemble du jeu,
+    car il n’y a qu’un seul sac utilisé.Le Sac n’a pas de
+    responsabilité pour les jetons,
+    qui sont crées et libérés avec le Jeu
+        .
 
-#### Plateau
+    ####Plateau
 
-La classe Plateau représente une collection de jetons organisée à l’aide d’un tableau à une dimension (vecteur) de 25 pointeurs vers des jetons constants. Pour simuler la structure matricielle 5x5 d’un véritable plateau, des opérations modulo sont employées pour naviguer dans le vecteur. Par exemple, le jeton d’indice 5 correspond au dessous du jeton d’indice 0. Le recours au Design Pattern ‘Singleton’ s’impose également, étant donné qu’il existe une seule instance de plateau dans le jeu.
+    La classe Plateau représente une collection de jetons
+    organisée à l’aide d’un tableau à une dimension(vecteur) de
+    25 pointeurs vers des jetons constants.Pour simuler la structure matricielle
+    5x5 d’un véritable plateau,
+    des opérations modulo sont
+    employées pour naviguer dans le vecteur.Par exemple,
+    le jeton d’indice 5 correspond au dessous du jeton d’indice
+    0. Le recours au Design Pattern ‘Singleton’ s’impose également,
+    étant donné qu’il existe une seule instance de plateau dans le jeu.
 
-L’aspect aléatoire des jetons prend place au moment du remplissage du plateau, ajoutant une dimension de variabilité au jeu.
+    L’aspect aléatoire des jetons prend place au moment du
+    remplissage du plateau,
+    ajoutant une dimension de variabilité au jeu
+        .
 
-#### Privilège
+    ####Privilège
 
-La classe Privilege représente l’une des classes les plus simples de notre projet. Son design a été pensé de manière à restreindre le nombre d’instances de privilèges à trois, grâce à l’utilisation d’un membre statique. Chaque privilège est identifié par un identificateur distinct, simplifiant ainsi leur manipulation au sein du système. Cette approche minimaliste contribue à la clarté et à l’efficacité de la gestion des privilèges.
+    La classe Privilege représente l’une des classes les plus simples de notre
+    projet.Son design a été pensé de manière à restreindre le nombre
+    d’instances de privilèges à trois,
+    grâce à l’utilisation d’un membre statique.Chaque privilège est
+    identifié par un identificateur distinct,
+    simplifiant ainsi leur manipulation au sein du système
+        .Cette approche minimaliste contribue à la clarté et à
+    l’efficacité de la gestion des privilèges.
 
-### Macth
+    ## #Macth
 
+    ## #History
 
+    La classe History représente l
+    'historique des parties jouées sur notre jeu. Un objet de la classe History est un objet pouvant regrouper tous les matchs de tous les joueurs du jeu (on parle ici des instance de Strategy_player, et pas uniquement de la classe fille Joueur). De ce fait, nous avons convenu que la classe serait implémentée à l' aide
+    du design pattern Singleton,
+    afin d 'en garantir l' unicité.Cette classe assure l
+    'enregistrement des matchs au sein d' un fichier json,
+    ainsi que la récupération des données de ce fichier pour permettre l
+    'affichage de l' historique aux joueurs.De plus,
+    nous avons choisi pour cette classe qu
+    'un joueur entrant un nom déjà contenu dans l' historique sera alors
+    considéré comme le même joueur.Non seulement cette classe permet cela,
+    mais elle permettra en plus au jeu de repartir du même pointeur de joueur.
 
-### History
+    ## #Développement du Main
 
-La classe History représente l'historique des parties jouées sur notre jeu. Un objet de la classe History est un objet pouvant regrouper tous les matchs de tous les joueurs du jeu (on parle ici des instance de Strategy_player, et pas uniquement de la classe fille Joueur). De ce fait, nous avons convenu que la classe serait implémentée à l'aide du design pattern Singleton, afin d'en garantir l'unicité.
-Cette classe assure l'enregistrement des matchs au sein d'un fichier json, ainsi que la récupération des données de ce fichier pour permettre l'affichage de l'historique aux joueurs. De plus, nous avons choisi pour cette classe qu'un joueur entrant un nom déjà contenu dans l'historique sera alors considéré comme le même joueur.
-Non seulement cette classe permet cela, mais elle permettra en plus au jeu de repartir du même pointeur de joueur.
-
-### Développement du Main
-
-Le programme principal (main) assure le bon déroulement d’une partie. C’est le développement de celui-ci qui nous a causé le plus de problèmes. En effet, le main doit garantir la bonne interaction entre l’ensemble des classes. De plus, après avoir fait le choix d’utiliser le design pattern ‘Strategy’ pour que le main soit adapté autant pour un joueur humain qu’une IA, nous avons du reprendre le main dans son intégralité car celui-ci n’était pas adapté à l’utilisation de ce design pattern.
+    Le programme principal(main) assure le bon déroulement d’une partie. C’est le développement de celui-ci qui nous a causé le plus de problèmes. En effet, le main doit garantir la bonne interaction entre l’ensemble des classes. De plus, après avoir fait le choix d’utiliser le design pattern ‘Strategy’ pour que le main soit adapté autant pour un joueur humain qu’une IA, nous avons du reprendre le main dans son intégralité car celui-ci n’était pas adapté à l’utilisation de ce design pattern.
 
 ## Évoluabilité
 

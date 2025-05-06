@@ -1,106 +1,76 @@
-@startuml
-class Sac{
-  - nb : int
-  - max : int
-  - jetons : const Jeton*[]
-  - handler_sac : static Handler_sac
+@startuml class Sac {
+  - nb:int - max:int - jetons:const Jeton *[] - handler_sac:static Handler_sac
 }
 
-class Tirage{
-  - nb_max_tirages : static const int;
-  - nb_tirages : static int;
-  - niveau : const int
-  - nb_cartes : int
-  - max_cartse : int
-  - cartes : vector<const Cartes_joaillerie*>
-  - pioche : Pioche&
+class Tirage {
+  - nb_max_tirages:static const int;
+  - nb_tirages:static int;
+  - niveau:const int -
+       nb_cartes:int - max_cartse:int -
+          cartes:vector<const Cartes_joaillerie *> - pioche:Pioche &
 }
 
-class Plateau{
-  - nb : int
-  - max : int
-  - jetons : const Jeton*[]
-  - handler_plateau : static Handler_plateau
+class Plateau {
+  - nb:int -
+                  max:int - jetons:const Jeton *[] -
+      handler_plateau:static Handler_plateau
 }
 
-class Jeton{
-  -id : int
-  -couleur : enum <bleu,red,vert,blanc,noir,or,perle>
-  -nb_perle : static int
-  -max_perle : static const int
-  -nb_or : static int
-  -max_or : static const int
-  -nb_vert : static int
-  -max_vert : static const int
-  -nb_rouge : static int
-  -max_rouge : static const int
-  -nb_bleu : static int
-  -max_bleu : static const int
-  -nb_blanc : static int
-  -max_blanc : static const int
-  -nb_noir : static int
-  -max_noir : static const int
+class Jeton {
+  - id:int -
+        couleur:enum<bleu, red, vert, blanc, noir, or, perle> -
+       nb_perle:static int - max_perle:static const int - nb_or:static int -
+         max_or:static const int - nb_vert:static int -
+       max_vert:static const int - nb_rouge:static int -
+      max_rouge:static const int - nb_bleu:static int -
+       max_bleu:static const int - nb_blanc:static int -
+      max_blanc:static const int - nb_noir:static int -
+       max_noir:static const int
 }
 
-class Privilege{
-  - id : const int
-  - instanceCount : static int
-  - maxInstances : static const int
+class Privilege {
+  - id:const int - instanceCount:static int - maxInstances:static const int
 }
 
-class Card{
-  -capacite: const Capacity {nullable}
-  -points_prestige: const int {nullable}
+class Card {
+  - capacite:const Capacity{nullable} - points_prestige:const int {
+    nullable
+  }
 }
 
-class JewelryCard{
-  - cout_blanc: const int
-  - cout_bleu: const int
-  - cout_vert: const int
-  - cout_rouge: const int
-  - cout_noir: const int
-  - cout_perle: const int
-  - niveau : const int
-  - nb_couronnes: const int [0,3]
-  - bonus_couleur: const enum <bleu, blanc, red, vert, noir, multiple>
-  - bonus_nombre: const int [0,2]
+class JewelryCard {
+  - cout_blanc:const int -
+          cout_bleu:const int - cout_vert:const int - cout_rouge:const int -
+          cout_noir:const int - cout_perle:const int - niveau:const int -
+       nb_couronnes:const int[0, 3] -
+      bonus_couleur:const enum<bleu, blanc, red, vert, noir, multiple> -
+       bonus_nombre:const int[0, 2]
 }
 
-class RoyalCard{
+class RoyalCard {
 }
 
-class Joueur{
-  - nom : str
-  - nb_points : int 
-  - nb_courones : int 
-  - nb_cartes_j : int 
-  - nb_cartes_r : int 
-  - nb_privileges : int
-  - max_nb_privileges : int  
-  - max_nb_jetons : int  
-  - max_nb_cartes_r : int 
-  - cartes_j : JewelryCard*[]
-  - cartes_r : RoyalCard*[]
-  - jetons : Jeton[] 
-  - privileges : Privilege*[] 
-}
-  
-class Jeu{
-  - est_termine : bool
-  - est_contre_AI : bool
-  - qui_joue : Joueur
-  - opponent : Joueur
+class Joueur {
+  - nom:str -
+              nb_points:int - nb_courones:int - nb_cartes_j:int -
+            nb_cartes_r:int - nb_privileges:int - max_nb_privileges:int -
+          max_nb_jetons:int - max_nb_cartes_r:int - cartes_j:JewelryCard *[] -
+               cartes_r:RoyalCard *[] - jetons:Jeton[] -
+             privileges:Privilege *[]
 }
 
-class Pioche{
-  - niveau : const int
-  - nb_pioches : static int
-  - max_pioches : static const int
-  - pioche : vector<const Cartes_joaillerie*>
+class Jeu {
+  - est_termine:bool - est_contre_AI:bool - qui_joue:Joueur - opponent:Joueur
 }
 
-class SplendorException{
-    - info : std::string
+class Pioche {
+  - niveau:const int -
+       nb_pioches:static int - max_pioches:static const int -
+           pioche:vector<const Cartes_joaillerie *>
+}
+
+class SplendorException {
+  - info:std::string
 }
   
 

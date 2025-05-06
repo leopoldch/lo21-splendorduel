@@ -5,21 +5,16 @@
 #ifndef LO21_SPLENDOR_DUEL_JSON_H
 #define LO21_SPLENDOR_DUEL_JSON_H
 
-#include <nlohmann/json.hpp>
 #include "joueur.h"
+#include <nlohmann/json.hpp>
 
-
-
-
-vector<const JewelryCard*> fromJsonJewelryCard(json data);
-vector<const RoyalCard*> fromJsonRoyalCard(json data);
-vector<const Jeton*> fromJsonJetons(json data);
-std::vector<const Privilege*> fromJsonPrivileges(json data, unsigned int nb);
-Pioche& fromJsonPioche(json data);
-Tirage& fromJsonTirage(json data, Pioche& p);
+vector<const JewelryCard *> fromJsonJewelryCard(json data);
+vector<const RoyalCard *> fromJsonRoyalCard(json data);
+vector<const Jeton *> fromJsonJetons(json data);
+std::vector<const Privilege *> fromJsonPrivileges(json data, unsigned int nb);
+Pioche &fromJsonPioche(json data);
+Tirage &fromJsonTirage(json data, Pioche &p);
 void fromJsonPlateau(json data);
 void fromJsonSac(json data);
 
-
-
-#endif //LO21_SPLENDOR_DUEL_JSON_H
+#endif // LO21_SPLENDOR_DUEL_JSON_H

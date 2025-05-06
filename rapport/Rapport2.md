@@ -119,4 +119,3 @@ Tout le monde s'entend toujours bien, nous travaillons ensembles. Le fait d'util
     - Gaspard ~ 6h semaine
     - Léopold ~ 6h semaine
     - Quentin ~ 6h semaine
-

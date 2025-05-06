@@ -1,32 +1,32 @@
 #ifndef QT_POPUP_JOKER_H
 #define QT_POPUP_JOKER_H
 
+#include "../classes/carte.h"
+#include "../classes/jeu.h"
+#include <QComboBox>
 #include <QDialog>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QComboBox>
-#include "../classes/jeu.h"
-#include "../classes/carte.h"
 
 class popupJoker : public QDialog {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit popupJoker(QWidget *parent = nullptr);
+  explicit popupJoker(QWidget *parent = nullptr);
 
-    const colorBonus getColor() const {return c;}
-    void setColor(const colorBonus& coul) { c = coul;}
+  const colorBonus getColor() const { return c; }
+  void setColor(const colorBonus &coul) { c = coul; }
 
 private slots:
-    void onSubmitClicked();
+  void onSubmitClicked();
 
 private:
-    QComboBox *comboBox;
+  QComboBox *comboBox;
 
-    colorBonus c;
+  colorBonus c;
 
-    QPushButton *submitButton;
+  QPushButton *submitButton;
 };
 
 #endif // QT_POPUP_JOKER_H

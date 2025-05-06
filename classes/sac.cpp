@@ -2,26 +2,25 @@
 
 Sac::Handler_Sac Sac::handler_sac;
 
-Sac &Sac::get_sac(){
-    if(handler_sac.instance==nullptr){
-        handler_sac.instance = new Sac();
-    }
-    return *handler_sac.instance;
+Sac &Sac::get_sac() {
+  if (handler_sac.instance == nullptr) {
+    handler_sac.instance = new Sac();
+  }
+  return *handler_sac.instance;
 }
 
 void Sac::libere_sac() {
-    delete handler_sac.instance;
-    handler_sac.instance = nullptr;
+  delete handler_sac.instance;
+  handler_sac.instance = nullptr;
 }
 
 void Sac::mettre_jeton_sac(const Jeton *jet) {
-    jetons.push_back(jet);
-    nb++;
+  jetons.push_back(jet);
+  nb++;
 }
 
 void Sac::print_sac() {
-    for(int i = 0; i< Jeton::getNbMaxJetons(); i++){
-        cout<<*jetons[i]<<endl;
-    }
+  for (int i = 0; i < Jeton::getNbMaxJetons(); i++) {
+    cout << *jetons[i] << endl;
+  }
 }
-

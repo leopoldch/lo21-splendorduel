@@ -1,365 +1,400 @@
-@startuml
-enum Capacity {
-  rejouer, voler_pion_adverse, prendre_privilege, prendre_sur_plateau, joker
+@startuml enum Capacity {
+  rejouer,
+  voler_pion_adverse,
+  prendre_privilege,
+  prendre_sur_plateau,
+  joker
 }
 
 enum Color {
-  bleu, rouge, vert, blanc, noir, perle, gold
+  bleu,
+  rouge,
+  vert,
+  blanc,
+  noir,
+  perle,
+  gold
 }
 
 enum colorBonus {
-  bleu, red, vert, blanc, noir, joker
+  bleu,
+  red,
+  vert,
+  blanc,
+  noir,
+  joker
 }
 
-class Sac{
-  - nb : int;
-  - jetons : vector<const Jeton*>;
-  - handler_sac : static Handler_sac;
+class Sac {
+  - nb:int;
+  - jetons:vector<const Jeton *>;
+  - handler_sac:static Handler_sac;
 }
 
-class Tirage{
-  - nb_max_tirages : static const int;
-  - nb_tirages : static int;
-  - niveau : const int;
-  - nb_cartes : int;
-  - max_cartes : const int;
-  - cartes : vector<const JewelryCard*>;
-  - pioche : Pioche&;
+class Tirage {
+  - nb_max_tirages:static const int;
+  - nb_tirages:static int;
+  - niveau:const int;
+  - nb_cartes:int;
+  - max_cartes:const int;
+  - cartes:vector<const JewelryCard *>;
+  - pioche:Pioche &;
 }
 
-class Plateau{
-  - nb : int;
-  - current_nb : int;
-  - jetons : vector<const Jeton*>;
-  - handler_plateau : static Handler_plateau;
+class Plateau {
+  - nb:int;
+  - current_nb:int;
+  - jetons:vector<const Jeton *>;
+  - handler_plateau:static Handler_plateau;
 }
 
-class Jeton{
-  -id : const int;
-  -couleur : const Color;
-  -nb_perle : static int;
-  -max_perle : static const int;
-  -nb_or : static int;
-  -max_or : static const int;
-  -nb_vert : static int;
-  -max_vert : static const int;
-  -nb_rouge : static int;
-  -max_rouge : static const int;
-  -nb_bleu : static int;
-  -max_bleu : static const int;
-  -nb_blanc : static int;
-  -max_blanc : static const int;
-  -nb_noir : static int;
-  -max_noir : static const int;
+class Jeton {
+  - id:const int;
+  - couleur:const Color;
+  - nb_perle:static int;
+  - max_perle:static const int;
+  - nb_or:static int;
+  - max_or:static const int;
+  - nb_vert:static int;
+  - max_vert:static const int;
+  - nb_rouge:static int;
+  - max_rouge:static const int;
+  - nb_bleu:static int;
+  - max_bleu:static const int;
+  - nb_blanc:static int;
+  - max_blanc:static const int;
+  - nb_noir:static int;
+  - max_noir:static const int;
 }
 
-class Privilege{
-  - id : const int;
-  - instanceCount : static int;
-  - maxInstances : static const int;
+class Privilege {
+  - id:const int;
+  - instanceCount:static int;
+  - maxInstances:static const int;
 }
 
-class Card{
-  #MAX : static const int
-  #nb_cartes: static int
-  -capacite: const Capacity {nullable}
-  -points_prestige: const int {nullable}
+class Card {
+#MAX : static const int
+#nb_cartes : static int
+  - capacite:const Capacity{nullable} - points_prestige:const int {
+    nullable
+  }
 }
 
-class JewelryCard{
-  - cout_blanc: const int;
-  - cout_bleu: const int;
-  - cout_rouge: const int;
-  - cout_vert: const int;
-  - cout_noir: const int;
-  - cout_perle: const int;
-  - niveau : const int;
-  - nb_couronnes: const int;
-  - bonus: optional<enum ColorBonus>;
-  - bonus_nombre: const int;
-  - max_carte_j : static const int;
+class JewelryCard {
+  - cout_blanc:const int;
+  - cout_bleu:const int;
+  - cout_rouge:const int;
+  - cout_vert:const int;
+  - cout_noir:const int;
+  - cout_perle:const int;
+  - niveau:const int;
+  - nb_couronnes:const int;
+  - bonus:optional<enum ColorBonus>;
+  - bonus_nombre:const int;
+  - max_carte_j:static const int;
 }
 
-class RoyalCard{
-  - max_royal_card : static const int;
+class RoyalCard {
+  - max_royal_card:static const int;
 }
 
-class Strategy_player{
-  # nom : std::string;
-  # nb_points: int;
-  # nb_couronnes : int;
-  # nb_cartes_j : int;
-  # nb_cartes_j_reservees : int;
-  # nb_cartes_r : int;
-  # nb_privileges : int;
-  # nb_jetons : int;
-  # max_nb_jetons : static int const;
-  # max_nb_cartes_r : static int const;
-  # max_nb_privileges : static int const;
-  # max_nb_cartes_reservees : static int const;
-  # cartes_joaillerie_achetees : vector<const JewelryCard*>;
-  # cartes_joaillerie_reservees : vector<const JewelryCard*>;
-  # cartes_royale : vector<const RoyalCard*>
-  # jetons : vector<const Jeton*>;
-  # privileges : vector<const Privilege*>;
+class Strategy_player {
+#nom : std::string;
+#nb_points : int;
+#nb_couronnes : int;
+#nb_cartes_j : int;
+#nb_cartes_j_reservees : int;
+#nb_cartes_r : int;
+#nb_privileges : int;
+#nb_jetons : int;
+#max_nb_jetons : static int const;
+#max_nb_cartes_r : static int const;
+#max_nb_privileges : static int const;
+#max_nb_cartes_reservees : static int const;
+#cartes_joaillerie_achetees : vector < const JewelryCard *>;
+#cartes_joaillerie_reservees : vector < const JewelryCard *>;
+#cartes_royale : vector < const RoyalCard *>
+#jetons : vector < const Jeton *>;
+#privileges : vector < const Privilege *>;
 }
 
-class Joueur { 
+class Joueur {
 }
 
 class IA {
 }
-  
-class Jeu{
-  - est_termine : bool;
-  - est_contre_IA : bool;
-  - qui_joue : Strategy_player*;
-  - manche : unsigned int;
-  - adversaire : Strategy_player*;
-  - cartes_joaillerie : vector<const JewelryCard*>;
-  - jetons : vector<const Jeton*>;
-  - cartes_royales : vector<const RoyalCard*>;
-  - privileges : vector <const Privilege*>;
-  - p1 : Pioche*;
-  - p2 : Pioche*;
-  - p3 : Pioche*;
-  - tirage_1 : Tirage*;
-  - tirage_2 : Tirage*;
-  - tirage_3 : Tirage*;
-  - handler: static Handler;
+
+class Jeu {
+  - est_termine:bool;
+  - est_contre_IA:bool;
+  - qui_joue:Strategy_player *;
+  - manche:unsigned int;
+  - adversaire:Strategy_player *;
+  - cartes_joaillerie:vector<const JewelryCard *>;
+  - jetons:vector<const Jeton *>;
+  - cartes_royales:vector<const RoyalCard *>;
+  - privileges:vector<const Privilege *>;
+  - p1:Pioche *;
+  - p2:Pioche *;
+  - p3:Pioche *;
+  - tirage_1:Tirage *;
+  - tirage_2:Tirage *;
+  - tirage_3:Tirage *;
+  - handler:static Handler;
 }
 
-class Pioche{
-  # max_pioches : static const int;
-  # nb_pioches : static int;
-  - niveau : const int;
-  - pioche: vector<const JewelryCard*>;
+class Pioche {
+#max_pioches : static const int;
+#nb_pioches : static int;
+  - niveau:const int;
+  - pioche:vector<const JewelryCard *>;
 }
 
-class SplendorException{
-    - info : std::string
+class SplendorException {
+  - info:std::string
 }
-  
 
-  Sac  o-- "0..*"Jeton : sont présents dans >
-  
-  Plateau o-- "0..*" Jeton : sont sur >
-  
-  Strategy_player o--l "0..3" Privilege : détienir >
-  Strategy_player o-- "0..3" JewelryCard : réserver >
-  Strategy_player o-- "0..*" JewelryCard : posséder >
-  Strategy_player o-- "0..10" Jeton : posséder >
-  Strategy_player o-- "0..2" RoyalCard : posséder >
-  
-  Pioche "1" -- "*" JewelryCard : contenir >
+        Sac o-- "0..*" Jeton : sont présents dans >
 
-  Tirage "1" --lo JewelryCard : contenir <
+                               Plateau o-- "0..*" Jeton : sont sur >
 
-  Strategy_player --* Jeu : composer >
-  Jeu *-- "1" Plateau : contenir >
-  Jeu *--r "1"Sac : contenir >
-  Jeu *-- "67" Card : contenir >
-  Jeu *-- "0..3" Privilege : contenir >
-  Jeu *-- "1..*" Jeton : contenir >
-  JewelryCard --^ Card
-  RoyalCard --^ Card
-  Joueur --^ Strategy_player
-  IA --^ Strategy_player
+                                                          Strategy_player o-- l
+                                                          "0..3" Privilege
+    : détienir > Strategy_player o-- "0..3" JewelryCard
+    : réserver > Strategy_player o-- "0..*" JewelryCard
+    : posséder > Strategy_player o-- "0..10" Jeton
+    : posséder > Strategy_player o-- "0..2" RoyalCard : posséder >
 
+                                                        Pioche
+                                                        "1" --"*" JewelryCard
+    : contenir >
 
+      Tirage "1" --lo JewelryCard
+    : contenir<
 
-  Jeton : + get_id() const : const int
-  Jeton : + getNbMaxJetons() : static int
-  Jeton : + getColor() const : const Color&
-  Jeton : + ~Jeton()
-  Jeton : + Jeton(id:int, coulr : const Color&)
-  Jeton : + operator=(jet : const Jeton&) : Jeton& = delete
-  Jeton : + Jeton(jet : const Jeton&) : Jeton = delete
+          Strategy_player-- * Jeu : composer> Jeu *
+      --"1" Plateau : contenir >
+      Jeu * --r "1" Sac : contenir > Jeu * --"67" Card : contenir >
+      Jeu * --"0..3" Privilege : contenir > Jeu * --"1..*" Jeton : contenir >
+      JewelryCard-- ^
+    Card RoyalCard-- ^ Card Joueur-- ^ Strategy_player IA-- ^
+    Strategy_player
 
-  Sac : - init_sac() : void
-  Sac : - operator=(s: const Sac&) : Sac& = delete
-  Sac : - Sac(s: const Sac&) = delete
-  Sac : - Sac() = default
-  Sac : - ~Sac() = default
-  Sac : + print_sac() : void
-  Sac : + get_sac() : static Sac&
-  Sac : + libere_sac() : static void
-  Sac : + get_nb_sac() const : const int
-  Sac : + set_nb_sac(nbr: int) : void
-  Sac : + get_jeton_i(i : int) const : const Jeton*
-  Sac : + set_sac_i(i: int, jet : Jeton*) : void
-  Sac : + mettre_jeton_sac(jet: const Jeton*) : void
-  Sac : + retirer_jeton_i(i : int) : void
-  
+            Jeton : +get_id() const : const int Jeton : +getNbMaxJetons()
+    : static int Jeton : +getColor() const : const Color & Jeton
+    : +~Jeton() Jeton : +Jeton(id : int, coulr : const Color &) Jeton
+    : +operator=(jet : const Jeton &)
+    : Jeton & = delete Jeton : +Jeton(jet : const Jeton &)
+    : Jeton = delete
 
-  Privilege : - Privilege(const Privilege&) = delete
-  Privilege : operator=(const Privilege&) : Privilege& = delete
-  Privilege : Privilege()
-  Privilege : get_id() const : const int
-  Privilege : getCount() : static int
-  Privilege : GetInstance() : static Privilege* 
-  Privilege : get_max_instance() : static int
-  
-  Strategy_player : - operator=(const Strategy_player&) : Strategy_player& = delete
-  Strategy_player : - Strategy_player(const Strategy_player&) = delete
-  Strategy_player : + Strategy_player(nom: const string&)
-  Strategy_player : + ~Strategy_player() : virtual
-  Strategy_player : + choice() : virtual void = 0
-  Strategy_player : + utilisationPrivilege() : virtual void = 0
-  Strategy_player : + selection_jetons() : virtual void = 0
-  Strategy_player : + achat_carte() : virtual void = 0
-  Strategy_player : + buyCard(t: Tirage*, indice: const int) : virtual void = 0
-  Strategy_player : + buyCardFromReserve(indice : const int) : virtual void = 0
-  Strategy_player : + reservation_carte() : virtual void = 0 
-  Strategy_player : + selectionRoyalCard() : virtual void = 0 
-  Strategy_player : + getNbCartesJoaillerie() const : const int
-  Strategy_player : + getNbJetons() const : const int 
-  Strategy_player : + getName() const : const string
-  Strategy_player : + setName(s : string&) : void
-  Strategy_player : + getNbCartesAchetees() const : const int
-  Strategy_player : + getNbCartesReservees() const : const int 
-  Strategy_player : + getNbPoints() const : const int
-  Strategy_player : + setPoints(nb: int) : void
-  Strategy_player : + getNbCouronnes() const : const int 
-  Strategy_player : + setNbCouronnes(nb : int) : void
-  Strategy_player : + getNbPrivileges() const : const int
-  Strategy_player : + setNbPrivileges(nb : int) : void
-  Strategy_player : + getNbCartesRoyales() const : const int 
-  Strategy_player : + getCartesReserved() : vector<const JewelryCard*>
-  Strategy_player : + increment_carte_royale() : void
-  Strategy_player : + calculateBonus(bonus : enum colorBonus) : int
-  Strategy_player : + nbJeton(couleur : const Color&) const : int
-  Strategy_player : + withdrawJetons(c: const Color&, val: int) : void
-  Strategy_player : + reserver_carte(t: Tirage*, indice: const int) : void
-  Strategy_player : + reserver_carte(p: Pioche*) : void
-  Strategy_player : + piocher_jeton(i: int) : void
-  Strategy_player : + obtainRoyaleCard(i : unsigned int) : void
-  Strategy_player : + royaleCardEligibility() : bool
-  Strategy_player : + obtainPrivilege() : void
-  Strategy_player : + retirerPrivilege() : void
-  Strategy_player : + remplissagePlateau() : void
-  Strategy_player : + getOptionalChoices() : int
-  
-  Joueur : + Joueur(const string &nom)
-  Joueur : + ~Joueur()
-  Joueur : + choice() : void
-  Joueur : + utilisationPrivilege() : void
-  Joueur : + selection_jetons() : void
-  Joueur : + achat_carte() : void
-  Joueur : + buyCard(t: Tirage*, indice : const int) : void
-  Joueur : + buyCardFromReserve(indice : const int) : void
-  Joueur : + reservation_carte() : void
-  Joueur : + selectionRoyalCard() : void
-  
-  IA : + IA(nom : const string&)
-  IA : + ~IA()
-  IA : + choice() : void
-  IA : + utilisationPrivilege() : void
-  IA : + selection_jetons() : void
-  IA : + achat_carte() : void
-  IA : + buyCard(t : Tirage*, indice : const int) : void
-  IA : + buyCardFromReserve(indice : const int) : void
-  IA : + reservation_carte() : void
-  IA : + selectionRoyalCard() : void
-  
-  
-  Card : - operator=(c : Card&) : Card& = delete
-  Card : + getNbCartes() : static int
-  Card : + ~Card()
-  Card : + Card(points_prestige : int, capacite : std::optional<Capacity>) : explicit
-  Card : + getCapacite() const : const optional<Capacity>&
-  Card : + getPrestige() const : const int 
-  
-  JewelryCard : + getCostWhite() const : const int 
-  JewelryCard : + getCostBlue() const : const int 
-  JewelryCard : + getCostRed() const : const int
-  JewelryCard : + getCostGreen() const : const int 
-  JewelryCard : + getCostBlack() const : const int 
-  JewelryCard : + getCostPerl() const : const int 
-  JewelryCard : + getMaxCarteJ() : static const int
-  JewelryCard : + JewelryCard(points_prestiges : int, cout_blanc : int, cout_bleu : int, cout_rouge : int, cout_vert : int, cout_noir : int, cout_perle : int, niveau : int, nb_couronnes : int, bonus_nombre : int, bonus : optional<enum colorBonus>, capacite : optional<Capacity>)
-  JewelryCard : + getNiveau() const : const int 
-  JewelryCard : + getNbCrown() const : const int 
-  JewelryCard : + getBonus() const : const optional<enum colorBonus>&
-  JewelryCard : + getNbBonus() const : const int
+      Sac : -init_sac()
+    : void Sac : -operator=(s : const Sac &)
+    : Sac & = delete Sac : -Sac(s : const Sac &) = delete Sac
+    : -Sac() = default Sac : -~Sac() = default Sac : +print_sac()
+    : void Sac : +get_sac()
+    : static Sac & Sac : +libere_sac()
+    : static void Sac : +get_nb_sac() const : const int Sac
+    : +set_nb_sac(nbr : int)
+    : void Sac : +get_jeton_i(i : int) const : const Jeton * Sac
+    : +set_sac_i(i : int, jet : Jeton *)
+    : void Sac : +mettre_jeton_sac(jet : const Jeton *)
+    : void Sac : +retirer_jeton_i(i : int)
+    : void
 
+      Privilege : -Privilege(const Privilege &) = delete Privilege
+    : operator=(const Privilege &)
+    : Privilege & = delete Privilege : Privilege() Privilege : get_id() const
+    : const int Privilege : getCount()
+    : static int Privilege : GetInstance()
+    : static Privilege * Privilege : get_max_instance()
+    : static int
 
-  RoyalCard : + RoyalCard(capacite : std::optional<Capacity>, points_prestige : int)
-  RoyalCard : + getMaxCarteR() : static const int 
-  
-  Jeu : - Jeu()
-  Jeu : - ~Jeu()
-  Jeu : - Jeu(const Jeu&) = delete
-  Jeu : - operator=(const Jeu&) : Jeu& = delete
-  Jeu : + setPlayers() : void
-  Jeu : + remplirPlateau() : void
-  Jeu : + getCurrentPlayer() const : Strategy_player&
-  Jeu : + getOpponent() const : Strategy_player&
-  Jeu : + getCartesRoyales() const : vector<const RoyalCard*>
-  Jeu : + getCartesJoaillerie() const : vector<const JewelryCard*>
-  Jeu : + pullCarteRoyale(i: unsigned int) : const RoyalCard&
-  Jeu : + getNbPrivilege() const : const unsigned int
-  Jeu : + getPrivilege() : const Privilege&
-  Jeu : + getPioche(num : int) const : Pioche*
-  Jeu : + setPrivilege(p : const Privilege&) : void
-  Jeu : + printCarteRoyale() : void
-  Jeu : + isFinished() : const bool
-  Jeu : + get_tour() : Strategy_player&
-  Jeu : + get_tirage_1() : Tirage*
-  Jeu : + get_tirage_2() : Tirage*
-  Jeu : + get_tirage_3() : Tirage*
-  Jeu : + tour_suivant() : void
-  Jeu : + libereJeu() : static void
-  Jeu : + test() : static void
-  Jeu : + getJeton(i : int) : const Jeton*
-  Jeu : + setJoueurNames(s1 : const string&, s2 : const string&) : void
-  
-  
-  Plateau : - ~Plateau() = default
-  Plateau : - operator=(p: const Plateau&) : Plateau& = delete
-  Plateau : - Plateau(p : const Plateau&) = delete
-  Plateau : + getCurrentNb() const : const int
-  Plateau : + setCurrentNb(value : const int) : void
-  Plateau : + get_plateau() : static Plateau&
-  Plateau : + libere_plateau() : static void
-  Plateau : + isInside(uid: const unsigned int) : const bool
-  Plateau : + getIndice(uid : const unsigned int) : unsigned int
-  Plateau : + get_plateau_i(i : int) const : const Jeton*
-  Plateau : + set_plateau_i(i : int, jet : const Jeton*) : void
-  Plateau : + get_droite_i(i : int) const : const Jeton*
-  Plateau : + get_gauche_i(i : int) const : const Jeton*
-  Plateau : + get_dessus_i(i : int) const : const Jeton*
-  Plateau : + get_dessous_i(i : int) const : const Jeton*
-  Plateau : + get_droite_dessus_i(i : int) const : const Jeton*
-  Plateau : + get_gauche_dessus_i(i : int) const : const Jeton*
-  Plateau : + get_droite_dessous_i(i : int) const : const Jeton*
-  Plateau : + get_gauche_dessous_i(i : int) const : const Jeton*
-  Plateau : + jeton_i_est_a_cote(i : int, jet : const Jeton*) : optional<const Position>
-  Plateau : + remplir_plateau(sac: Sac&) : void
-  Plateau : + printTab() const : void
+      Strategy_player : -operator=(const Strategy_player &)
+    : Strategy_player & = delete Strategy_player
+    : -Strategy_player(const Strategy_player &) = delete Strategy_player
+    : +Strategy_player(nom : const string &) Strategy_player
+    : +~Strategy_player()
+    : virtual Strategy_player : +choice()
+    : virtual void = 0 Strategy_player : +utilisationPrivilege()
+    : virtual void = 0 Strategy_player : +selection_jetons()
+    : virtual void = 0 Strategy_player : +achat_carte()
+    : virtual void = 0 Strategy_player
+    : +buyCard(t : Tirage *, indice : const int)
+    : virtual void = 0 Strategy_player : +buyCardFromReserve(indice : const int)
+    : virtual void = 0 Strategy_player : +reservation_carte()
+    : virtual void = 0 Strategy_player : +selectionRoyalCard()
+    : virtual void = 0 Strategy_player : +getNbCartesJoaillerie() const
+    : const int Strategy_player : +getNbJetons() const
+    : const int Strategy_player : +getName() const
+    : const string Strategy_player : +setName(s : string &)
+    : void Strategy_player : +getNbCartesAchetees() const
+    : const int Strategy_player : +getNbCartesReservees() const
+    : const int Strategy_player : +getNbPoints() const
+    : const int Strategy_player : +setPoints(nb : int)
+    : void Strategy_player : +getNbCouronnes() const : const int Strategy_player
+    : +setNbCouronnes(nb : int)
+    : void Strategy_player : +getNbPrivileges() const
+    : const int Strategy_player : +setNbPrivileges(nb : int)
+    : void Strategy_player : +getNbCartesRoyales() const
+    : const int Strategy_player : +getCartesReserved()
+    : vector<const JewelryCard *> Strategy_player : +increment_carte_royale()
+    : void Strategy_player : +calculateBonus(bonus : enum colorBonus)
+    : int Strategy_player : +nbJeton(couleur : const Color &) const
+    : int Strategy_player : +withdrawJetons(c : const Color &, val : int)
+    : void Strategy_player : +reserver_carte(t : Tirage *, indice : const int)
+    : void Strategy_player : +reserver_carte(p : Pioche *)
+    : void Strategy_player : +piocher_jeton(i : int)
+    : void Strategy_player : +obtainRoyaleCard(i : unsigned int)
+    : void Strategy_player : +royaleCardEligibility()
+    : bool Strategy_player : +obtainPrivilege()
+    : void Strategy_player : +retirerPrivilege()
+    : void Strategy_player : +remplissagePlateau()
+    : void Strategy_player : +getOptionalChoices()
+    : int
 
-  Tirage : - operator=(t : const Tirage&) : Tirage& = delete
-  Tirage : - Tirage(t : const Tirage&) = delete
-  Tirage : + Tirage(niv : int, max : int, p : Pioche&)
-  Tirage : + ~Tirage()
-  Tirage : + getNiveau()const : const int 
-  Tirage : + getNbCartes() const : const int 
-  Tirage : + getPioche() const : Pioche&
-  Tirage : + getTirage() : vector<const JewelryCard*>&
-  Tirage : + remplirTirage() : void
-  Tirage : + getCarte(indice : unsigned int) : const JewelryCard&
-  Tirage : + getCarteSansSupr(indice : unsigned int) : const JewelryCard&
+      Joueur : +Joueur(const string &nom) Joueur : +~Joueur() Joueur : +choice()
+    : void Joueur : +utilisationPrivilege()
+    : void Joueur : +selection_jetons()
+    : void Joueur : +achat_carte()
+    : void Joueur : +buyCard(t : Tirage *, indice : const int)
+    : void Joueur : +buyCardFromReserve(indice : const int)
+    : void Joueur : +reservation_carte()
+    : void Joueur : +selectionRoyalCard()
+    : void
 
-  Pioche : - operator=(p : Pioche&) : Pioche& = delete
-  Pioche : + ~Pioche()
-  Pioche : + Pioche(niv: int)
-  Pioche : + getNiveau() const : int
-  Pioche : + est_vide() : bool
-  Pioche : + getPioche() const : vector<const JewelryCard*>
-  Pioche : + getNbPioches() : static int 
-  Pioche : + InitPioches(p1 : Pioche*, p2 : Pioche*, p3 : Pioche*, cartes : vector<const JewelryCard*>&) : static void
-  Pioche : + getCarte() : const JewelryCard&
+      IA : +IA(nom : const string &) IA : +~IA() IA : +choice()
+    : void IA : +utilisationPrivilege()
+    : void IA : +selection_jetons()
+    : void IA : +achat_carte()
+    : void IA : +buyCard(t : Tirage *, indice : const int)
+    : void IA : +buyCardFromReserve(indice : const int)
+    : void IA : +reservation_carte()
+    : void IA : +selectionRoyalCard()
+    : void
 
-  SplendorException : + SplendorException(str const std::string&)
-  SplendorException : + getInfos() const : std::string
-@enduml
+      Card : -operator=(c : Card &)
+    : Card & = delete Card : +getNbCartes()
+    : static int Card : +~Card() Card
+    : +Card(points_prestige : int, capacite : std::optional<Capacity>)
+    : explicit Card : +getCapacite() const : const optional<Capacity> &
+                                             Card : +getPrestige() const
+    : const int
+
+      JewelryCard : +getCostWhite() const : const int JewelryCard
+    : +getCostBlue() const : const int JewelryCard : +getCostRed() const
+    : const int JewelryCard : +getCostGreen() const : const int JewelryCard
+    : +getCostBlack() const : const int JewelryCard : +getCostPerl() const
+    : const int JewelryCard : +getMaxCarteJ()
+    : static const int JewelryCard
+    : +JewelryCard(points_prestiges : int, cout_blanc : int, cout_bleu : int,
+                   cout_rouge : int, cout_vert : int, cout_noir : int,
+                   cout_perle : int, niveau : int, nb_couronnes : int,
+                   bonus_nombre : int, bonus : optional<enum colorBonus>,
+                   capacite : optional<Capacity>) JewelryCard
+    : +getNiveau() const : const int JewelryCard : +getNbCrown() const
+    : const int JewelryCard : +getBonus() const
+    : const optional<enum colorBonus> &
+      JewelryCard : +getNbBonus() const : const int
+
+                                          RoyalCard
+    : +RoyalCard(capacite : std::optional<Capacity>,
+                 points_prestige : int) RoyalCard : +getMaxCarteR()
+    : static const int
+
+      Jeu : -Jeu() Jeu : -~Jeu() Jeu : -Jeu(const Jeu &) =
+                   delete Jeu : -operator=(const Jeu &)
+    : Jeu & = delete Jeu : +setPlayers()
+    : void Jeu : +remplirPlateau()
+    : void Jeu : +getCurrentPlayer() const : Strategy_player &
+                                             Jeu : +getOpponent() const
+    : Strategy_player
+      &
+      Jeu : +getCartesRoyales() const : vector<const RoyalCard *> Jeu
+    : +getCartesJoaillerie() const : vector<const JewelryCard *> Jeu
+    : +pullCarteRoyale(i : unsigned int)
+    : const RoyalCard &
+      Jeu : +getNbPrivilege() const : const unsigned int Jeu : +getPrivilege()
+    : const Privilege &
+      Jeu : +getPioche(num : int) const : Pioche * Jeu
+    : +setPrivilege(p : const Privilege &)
+    : void Jeu : +printCarteRoyale()
+    : void Jeu : +isFinished()
+    : const bool Jeu : +get_tour()
+    : Strategy_player &
+      Jeu : +get_tirage_1()
+    : Tirage *
+      Jeu : +get_tirage_2()
+    : Tirage *
+      Jeu : +get_tirage_3()
+    : Tirage *
+      Jeu : +tour_suivant()
+    : void Jeu : +libereJeu()
+    : static void Jeu : +test()
+    : static void Jeu : +getJeton(i : int)
+    : const Jeton *
+      Jeu : +setJoueurNames(s1 : const string &, s2 : const string &)
+    : void
+
+      Plateau : -~Plateau() = default Plateau : -operator=(p : const Plateau &)
+    : Plateau & = delete Plateau : -Plateau(p : const Plateau &) =
+                                       delete Plateau : +getCurrentNb() const
+    : const int Plateau : +setCurrentNb(value : const int)
+    : void Plateau : +get_plateau()
+    : static Plateau & Plateau : +libere_plateau()
+    : static void Plateau : +isInside(uid : const unsigned int)
+    : const bool Plateau : +getIndice(uid : const unsigned int)
+    : unsigned int Plateau : +get_plateau_i(i : int) const : const Jeton *
+                                                             Plateau
+    : +set_plateau_i(i : int, jet : const Jeton *)
+    : void Plateau : +get_droite_i(i : int) const : const Jeton *
+                                                    Plateau
+    : +get_gauche_i(i : int) const : const Jeton
+                                     *
+                                     Plateau : +get_dessus_i(i : int) const
+    : const Jeton
+      *
+      Plateau : +get_dessous_i(i : int) const : const Jeton *
+                                                Plateau
+    : +get_droite_dessus_i(i : int) const
+    : const Jeton
+      *
+      Plateau : +get_gauche_dessus_i(i : int) const : const Jeton *
+                                                      Plateau
+    : +get_droite_dessous_i(i : int) const
+    : const Jeton
+      *
+      Plateau : +get_gauche_dessous_i(i : int) const : const Jeton *
+                                                       Plateau
+    : +jeton_i_est_a_cote(i : int, jet : const Jeton *)
+    : optional<const Position> Plateau : +remplir_plateau(sac : Sac &)
+    : void Plateau : +printTab() const : void
+
+                                         Tirage : -operator=(t : const Tirage &)
+    : Tirage & = delete Tirage : -Tirage(t : const Tirage &) = delete Tirage
+    : +Tirage(niv : int, max : int, p : Pioche &) Tirage : +~Tirage() Tirage
+    : +getNiveau() const : const int Tirage : +getNbCartes() const
+    : const int Tirage : +getPioche() const : Pioche
+                                              &
+                                              Tirage : +getTirage()
+    : vector<const JewelryCard *> &
+      Tirage : +remplirTirage()
+    : void Tirage : +getCarte(indice : unsigned int)
+    : const JewelryCard &
+      Tirage : +getCarteSansSupr(indice : unsigned int)
+    : const JewelryCard &
+
+      Pioche : -operator=(p : Pioche &)
+    : Pioche & = delete Pioche : +~Pioche() Pioche : +Pioche(niv : int) Pioche
+    : +getNiveau() const : int Pioche : +est_vide()
+    : bool Pioche : +getPioche() const : vector<const JewelryCard *> Pioche
+    : +getNbPioches()
+    : static int Pioche
+    : +InitPioches(p1 : Pioche *, p2 : Pioche *, p3 : Pioche *,
+                   cartes : vector<const JewelryCard *> &)
+    : static void Pioche : +getCarte()
+    : const JewelryCard &
+
+      SplendorException
+    : +SplendorException(str const std::string &) SplendorException
+    : +getInfos() const : std::string @enduml
