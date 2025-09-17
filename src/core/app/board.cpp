@@ -85,9 +85,9 @@ void Board::printArray() const {
 			}
 		} else {
 			if ((i + 1) % 5 == 0) {
-				cout << "index : " << i << " id: null; couleur: null\n";
+				cout << "index : " << i << " id: null; color: null\n";
 			} else {
-				cout << "index : " << i << " id: null; couleur: null |";
+				cout << "index : " << i << " id: null; color: null |";
 			}
 		}
 	}
@@ -147,7 +147,7 @@ optional<const Position> Board::tokensAreASide(int i, const Token *jet) {
 
 bool Board::onlyGold() {
 	if (getCurrentNb() == 0)
-		throw SplendorException("Board vide!");
+		throw SplendorException("Board empty!");
 	for (auto jet : tokens) {
 		if (jet != nullptr and jet->getColor() != Color::gold)
 			return false;
@@ -157,7 +157,7 @@ bool Board::onlyGold() {
 
 bool Board::colorsOnBoard(const optional<enum colorBonus> &couleur) {
 	if (getCurrentNb() == 0)
-		throw SplendorException("Board vide!");
+		throw SplendorException("Board empty!");
 	string s = "Bonus ";
 	for (auto jet : tokens) {
 		if (jet != nullptr and
@@ -171,7 +171,7 @@ bool Board::colorsOnBoard(const optional<enum colorBonus> &couleur) {
 vector<int>
 Board::getTokenIndexesByColor(const optional<enum colorBonus> &couleur) {
 	if (getCurrentNb() == 0)
-		throw SplendorException("Board vide!");
+		throw SplendorException("Board empty!");
 	vector<int> result;
 	string s = "Bonus ";
 	for (auto jet : tokens) {

@@ -19,7 +19,7 @@ class Bag {
 	};
 
 	static BagHandler bag_handler;
-	
+
 	Bag() = default;
 	~Bag() = default; // aggregation
 
@@ -29,8 +29,7 @@ class Bag {
 	void initBag();
 
   public:
-
-  	void printBag();
+	void printBag();
 	static Bag &get();
 	static void free();
 	void insertToken(const Token *jet);
@@ -46,9 +45,7 @@ class Bag {
 		return data_to_be_saved;
 	}
 
-	const int getTokenNumber() const { 
-		return tokens_in_bag_number; 
-	}
+	const int getTokenNumber() const { return tokens_in_bag_number; }
 
 	void setAmountofToken(int nbr) {
 		if (tokens_in_bag_number < 0) {
@@ -57,13 +54,9 @@ class Bag {
 		}
 		tokens_in_bag_number = nbr;
 	}
-	const Token *getTokenByIndex(int i) const { 
-		return tokens[i]; 
-	}
+	const Token *getTokenByIndex(int i) const { return tokens[i]; }
 
-	void placeTokenInBagByIndex(int i, Token *jet) { 
-		tokens[i] = jet;
-	}
+	void placeTokenInBagByIndex(int i, Token *jet) { tokens[i] = jet; }
 
 	void takeTokenByIndex(int i) {
 		if ((i < 0) || (i >= Bag::getTokenNumber())) {
@@ -74,7 +67,6 @@ class Bag {
 		tokens.erase(tokens.begin() + i);
 		--tokens_in_bag_number;
 	}
-
 };
 
 #endif // LO21_SPLENDOR_DUEL_SAC_H

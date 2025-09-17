@@ -14,7 +14,6 @@ SOURCES += \
     core/privilege.cpp \
     core/bag.cpp \
     core/draw.cpp \
-    Qt/main_old.cpp \
     Qt/main_window.qt.cpp \
 
 

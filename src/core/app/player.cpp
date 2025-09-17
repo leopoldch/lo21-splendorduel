@@ -1,7 +1,7 @@
 #include "player.h"
-#include "main_window.qt.h"
 #include "card.h"
 #include "game.h"
+#include "main_window.qt.h"
 
 #include <QInputDialog>
 #include <QMessageBox>

@@ -13,8 +13,9 @@ class Qt_Plateau : public QWidget {
 	Q_OBJECT;
 
   public:
-	const std::vector<Qt_jeton *> &getJetons() const { return tokens; }
 	void connectJetons();
+
+	const std::vector<Qt_jeton *> &getJetons() const { return tokens; }
 
 	static Qt_Plateau &getPlateau() {
 		if (handler.instance == nullptr)

@@ -1,9 +1,9 @@
 #include "main.h"
-#include "main_window.qt.h"
-#include "info_popup.qt.h"
-#include "yesno_popup.qt.h"
 #include "game.h"
+#include "info_popup.qt.h"
+#include "main_window.qt.h"
 #include "player.h"
+#include "yesno_popup.qt.h"
 #include <QApplication>
 #include <QMainWindow>
 #include <QString>

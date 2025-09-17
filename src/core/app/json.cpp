@@ -156,6 +156,6 @@ void bagFromJson(json data) {
 		}
 
 		bag.setAmountofToken(data["nb"]); // normalement pas besoin de reset nb
-		                                // mais on sait jamais
+		                                  // mais on sait jamais
 	}
 }

@@ -1,6 +1,6 @@
 #include "draws.qt.h"
-#include "main_window.qt.h"
 #include "card_view.qt.h"
+#include "main_window.qt.h"
 #include <QPixmap>
 #include <QVBoxLayout>
 

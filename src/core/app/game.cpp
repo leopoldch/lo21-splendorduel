@@ -28,21 +28,21 @@ Game::Game() {
 	int j = 1;
 
 	for (int i = 0; i < 4; i++) {
-		auto *temp =
-		    new Token(j++, Color::blue, "../src/assets/rest_detoured/Jeton_bleu.png");
+		auto *temp = new Token(j++, Color::blue,
+		                       "../src/assets/rest_detoured/Jeton_bleu.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
 
 	for (int i = 0; i < 4; i++) {
-		auto *temp =
-		    new Token(j++, Color::red, "../src/assets/rest_detoured/Jeton_rouge.png");
+		auto *temp = new Token(j++, Color::red,
+		                       "../src/assets/rest_detoured/Jeton_rouge.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
 	for (int i = 0; i < 4; i++) {
-		auto *temp =
-		    new Token(j++, Color::green, "../src/assets/rest_detoured/Jeton_vert.png");
+		auto *temp = new Token(j++, Color::green,
+		                       "../src/assets/rest_detoured/Jeton_vert.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
@@ -53,20 +53,20 @@ Game::Game() {
 		Bag::get().insertToken(temp);
 	}
 	for (int i = 0; i < 4; i++) {
-		auto *temp =
-		    new Token(j++, Color::black, "../src/assets/rest_detoured/Jeton_noir.png");
+		auto *temp = new Token(j++, Color::black,
+		                       "../src/assets/rest_detoured/Jeton_noir.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
 	for (int i = 0; i < 2; i++) {
-		auto *temp =
-		    new Token(j++, Color::perl, "../src/assets/rest_detoured/Jeton_perle.png");
+		auto *temp = new Token(j++, Color::perl,
+		                       "../src/assets/rest_detoured/Jeton_perle.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
 	for (int i = 0; i < 3; i++) {
-		auto *temp =
-		    new Token(j++, Color::gold, "../src/assets/rest_detoured/Jeton_or.png");
+		auto *temp = new Token(j++, Color::gold,
+		                       "../src/assets/rest_detoured/Jeton_or.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}

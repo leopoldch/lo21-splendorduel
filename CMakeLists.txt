@@ -24,8 +24,6 @@ file(GLOB_RECURSE PROJECT_SOURCES CONFIGURE_DEPENDS
      "${CMAKE_SOURCE_DIR}/src/*.cpp"
      "${CMAKE_SOURCE_DIR}/src/*.h")
 
-list(FILTER PROJECT_SOURCES EXCLUDE REGEX ".*/src/Qt/app/main_old\\.cpp$")
-
 add_executable(lo21-splendor-duel
     main.cpp
     main.h

@@ -1,6 +1,6 @@
 #include "main_window.qt.h"
-#include "history.h"
 #include "color_popup.qt.h"
+#include "history.h"
 #include "joker_popup.qt.h"
 #include <QDialog>
 #include <QScrollArea>
@@ -165,7 +165,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// Conditions de victoire et son image
 	QLabel *conditionsVictoire = new QLabel(this);
-	QPixmap originalPixmap("../src/assets/rest_detoured/Conditions_victoire.png");
+	QPixmap originalPixmap(
+	    "../src/assets/rest_detoured/Conditions_victoire.png");
 	QPixmap scaledPixmap = originalPixmap.scaled(
 	    397 / 3, 330 / 3, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	conditionsVictoire->setPixmap(scaledPixmap);
@@ -678,8 +679,8 @@ void MainWindow::updateBoard() {
 
 void MainWindow::updatePrivileges() {
 	int privilege_number = Game::getGame().getPrivilegeNumber();
-	QIcon icon(
-	    QPixmap(QString::fromStdString("../src/assets/rest_detoured/Privilege.png")));
+	QIcon icon(QPixmap(
+	    QString::fromStdString("../src/assets/rest_detoured/Privilege.png")));
 	switch (privilege_number) {
 	case 0:
 		board->getPrivilege1()->setIcon(QIcon());
