@@ -12,14 +12,13 @@ const JewelryCard &Deck::getCard() {
 }
 
 void Deck::initDecks(Deck *deck1, Deck *deck2, Deck *deck3,
-                         vector<const JewelryCard *> &cards) {
+                     vector<const JewelryCard *> &cards) {
 	if (decks_number != max_decks) {
 		throw SplendorException("les pioches ne sont pas toutes créées");
 	}
 
-	for (const JewelryCard *card :
-	     cards) { // pour chaque card (ptr constant
-		           // vers une card) du vecteur cards
+	for (const JewelryCard *card : cards) { // pour chaque card (ptr constant
+		                                    // vers une card) du vecteur cards
 		switch (card->getLevel()) {
 		case 1:
 			(deck1->deck).push_back(card);

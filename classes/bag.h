@@ -28,7 +28,7 @@ class Bag {
   public:
 	json toJson() const {
 		json j;
-		// This nb needs to change 
+		// This nb needs to change
 		j["nb"] = getTokenNumber();
 		j["tokens"] = {};
 		for (int i = 0; i < tokens.size(); ++i) {

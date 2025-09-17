@@ -2,10 +2,10 @@
 #define LO21_SPLENDOR_DUEL_JOUEUR_H
 
 #include "Exception.h"
-#include "board.h"
-#include "privilege.h"
 #include "bag.h"
+#include "board.h"
 #include "draw.h"
+#include "privilege.h"
 #include <QThread>
 #include <iostream>
 #include <string>
@@ -39,7 +39,7 @@ class StrategyPlayer { // Utilisation Design Pattern Strategy
 
 	vector<const JewelryCard *> bought_jewelry_cards;
 	vector<const JewelryCard *> reserved_jewelry_cards; // 3 au max
-	vector<const RoyalCard *> royal_cards; // ok pour agrégation?
+	vector<const RoyalCard *> royal_cards;              // ok pour agrégation?
 
 	vector<const Token *> tokens; // tableau de tokens ? or ?
 
@@ -112,10 +112,10 @@ class StrategyPlayer { // Utilisation Design Pattern Strategy
 	// constructeur destructeur
 	StrategyPlayer(const string &name);
 	StrategyPlayer(const json data)
-	    : points_number(0), jewelry_cards_number(0), royal_cards_number(0), crown_number(0),
-	      privilege_number(0), name(data["name"]), token_number(0),
-	      reserved_jewelry_cards_number(0), games_won(data["games_won"]),
-	      games(data["games"]) {}
+	    : points_number(0), jewelry_cards_number(0), royal_cards_number(0),
+	      crown_number(0), privilege_number(0), name(data["name"]),
+	      token_number(0), reserved_jewelry_cards_number(0),
+	      games_won(data["games_won"]), games(data["games"]) {}
 
 	virtual ~StrategyPlayer();
 
@@ -132,13 +132,13 @@ class StrategyPlayer { // Utilisation Design Pattern Strategy
 	virtual void buyReservedCard(const int index) = 0;
 	virtual void buyReservedCard_Qt(const int index) = 0;
 	virtual void applyCapacity(const JewelryCard &card,
-	                                 StrategyPlayer &opponent) = 0;
+	                           StrategyPlayer &opponent) = 0;
 	virtual void applyCapacity_Qt(const JewelryCard &card,
-	                                    StrategyPlayer &opponent) = 0;
+	                              StrategyPlayer &opponent) = 0;
 	virtual void applyRoyalCapacity(const RoyalCard &card,
-	                                       StrategyPlayer &opponent) = 0;
+	                                StrategyPlayer &opponent) = 0;
 	virtual void applyRoyalCapacity_Qt(const RoyalCard &card,
-	                                          StrategyPlayer &opponent) = 0;
+	                                   StrategyPlayer &opponent) = 0;
 	virtual void cardReservation() = 0;
 	virtual void cardReservation_Qt() = 0;
 	virtual void royalCardSelection() = 0;
@@ -298,14 +298,10 @@ class Player : public StrategyPlayer {
 	void usePrivilege_Qt();
 	void tokenSelection();
 	void tokenSelection_Qt();
-	void applyCapacity(const JewelryCard &card,
-	                         StrategyPlayer &opponent);
-	void applyCapacity_Qt(const JewelryCard &card,
-	                            StrategyPlayer &opponent);
-	void applyRoyalCapacity(const RoyalCard &card,
-	                               StrategyPlayer &opponent);
-	void applyRoyalCapacity_Qt(const RoyalCard &card,
-	                                  StrategyPlayer &opponent);
+	void applyCapacity(const JewelryCard &card, StrategyPlayer &opponent);
+	void applyCapacity_Qt(const JewelryCard &card, StrategyPlayer &opponent);
+	void applyRoyalCapacity(const RoyalCard &card, StrategyPlayer &opponent);
+	void applyRoyalCapacity_Qt(const RoyalCard &card, StrategyPlayer &opponent);
 	void cardPurchase();
 	void cardPurchase_Qt();
 	void buyCard(Draw *t, const int index);
@@ -342,16 +338,13 @@ class RandomPlayer : public StrategyPlayer {
 	void cardReservation_Qt() { cardReservation(); }
 	void royalCardSelection();
 	void royalCardSelection_Qt() { royalCardSelection(); }
-	void applyCapacity(const JewelryCard &card,
-	                         StrategyPlayer &opponent);
-	void applyCapacity_Qt(const JewelryCard &card,
-	                            StrategyPlayer &opponent) {
+	void applyCapacity(const JewelryCard &card, StrategyPlayer &opponent);
+	void applyCapacity_Qt(const JewelryCard &card, StrategyPlayer &opponent) {
 		applyCapacity(card, opponent);
 	}
-	void applyRoyalCapacity(const RoyalCard &card,
-	                               StrategyPlayer &opponent);
+	void applyRoyalCapacity(const RoyalCard &card, StrategyPlayer &opponent);
 	void applyRoyalCapacity_Qt(const RoyalCard &card,
-	                                  StrategyPlayer &opponent) {
+	                           StrategyPlayer &opponent) {
 		applyRoyalCapacity(card, opponent);
 	}
 	void tokenVerification();

@@ -149,11 +149,11 @@ class JewelryCard : public Card {
 			throw SplendorException("Maximum cards reached");
 		}
 		if (white_cost < 0 || white_cost > 10 || blue_cost < 0 ||
-		    blue_cost > 10 || red_cost < 0 || red_cost > 10 ||
-		    green_cost < 0 || green_cost > 10 || black_cost < 0 ||
-		    black_cost > 10 || perl_cost < 0 || perl_cost > 10 || level < 1 ||
-		    level > 3 || nb_couronnes < 0 || nb_couronnes > 5 ||
-		    bonus_number < 0 || bonus_number > 5) {
+		    blue_cost > 10 || red_cost < 0 || red_cost > 10 || green_cost < 0 ||
+		    green_cost > 10 || black_cost < 0 || black_cost > 10 ||
+		    perl_cost < 0 || perl_cost > 10 || level < 1 || level > 3 ||
+		    nb_couronnes < 0 || nb_couronnes > 5 || bonus_number < 0 ||
+		    bonus_number > 5) {
 			throw SplendorException("Unauthorized value");
 		}
 	}
@@ -227,8 +227,7 @@ inline Color stringToColor(std::string &str) {
 	if (str == "Gold")
 		return Color::gold;
 	else
-		throw SplendorException(
-		    "The string passed does not match any color! ");
+		throw SplendorException("The string passed does not match any color! ");
 }
 const Color colorBonusToColor(const optional<enum colorBonus> &couleur);
 const colorBonus stringToBonus(const std::string &str);

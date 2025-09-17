@@ -11,7 +11,7 @@ using namespace std;
 class Draw {
 
 	static const int max_draw_amount = 3; // limite de draw
-	static int draw_count;               // compteur
+	static int draw_count;                // compteur
 	Deck &deck;
 	const int level;
 	int cards_number;

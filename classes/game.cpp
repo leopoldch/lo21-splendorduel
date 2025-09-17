@@ -35,8 +35,8 @@ Game::Game() {
 	}
 
 	for (int i = 0; i < 4; i++) {
-		auto *temp = new Token(j++, Color::red,
-		                       "../src/Reste_detoure/Jeton_rouge.png");
+		auto *temp =
+		    new Token(j++, Color::red, "../src/Reste_detoure/Jeton_rouge.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
@@ -59,8 +59,8 @@ Game::Game() {
 		Bag::get().insertToken(temp);
 	}
 	for (int i = 0; i < 2; i++) {
-		auto *temp = new Token(j++, Color::perl,
-		                       "../src/Reste_detoure/Jeton_perle.png");
+		auto *temp =
+		    new Token(j++, Color::perl, "../src/Reste_detoure/Jeton_perle.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}

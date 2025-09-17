@@ -40,7 +40,7 @@ class Deck {
 	const void setDeck(vector<const JewelryCard *> p) { deck = p; }
 
 	static void initDecks(Deck *deck1, Deck *deck2, Deck *deck3,
-	                        vector<const JewelryCard *> &cards);
+	                      vector<const JewelryCard *> &cards);
 
 	const JewelryCard &getCard();
 

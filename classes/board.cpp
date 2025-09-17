@@ -109,8 +109,8 @@ void Board::fill(Bag &bag) {
 }
 
 extern std::initializer_list<Position> Positions = {
-    Position::right,  Position::diag_upper_right,
-    Position::above,  Position::diag_upper_left,
+    Position::right, Position::diag_upper_right,
+    Position::above, Position::diag_upper_left,
     Position::left,  Position::diag_lower_left,
     Position::below, Position::diag_lower_right};
 

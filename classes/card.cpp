@@ -31,7 +31,8 @@ std::string toString(optional<Capacity> c) {
 		} else if (c == Capacity::take_priviledge) {
 			return "Take a privilege";
 		} else if (c == Capacity::take_on_board) {
-			return "Take a pawn of the same color as the card bonus on the board";
+			return "Take a pawn of the same color as the card bonus on the "
+			       "board";
 		} else if (c == Capacity::joker) {
 			return "Joker";
 		} else {
@@ -141,16 +142,15 @@ extern std::initializer_list<Color> Colors = {
     Color::red, Color::blue, Color::green, Color::white, Color::black};
 
 extern std::initializer_list<Capacity> Capacities = {
-    Capacity::replay, Capacity::steal_opponent_pawn,
-    Capacity::take_priviledge, Capacity::take_on_board,
-    Capacity::joker};
+    Capacity::replay, Capacity::steal_opponent_pawn, Capacity::take_priviledge,
+    Capacity::take_on_board, Capacity::joker};
 
 extern std::initializer_list<enum colorBonus> Color_bonus = {
-    colorBonus::blue,  colorBonus::red,  colorBonus::green,
+    colorBonus::blue,  colorBonus::red,   colorBonus::green,
     colorBonus::white, colorBonus::black, colorBonus::joker};
 
 std::map<std::string, enum colorBonus> bonusMap = {
-    {"blue", colorBonus::blue}, {"red", colorBonus::red},
+    {"blue", colorBonus::blue},   {"red", colorBonus::red},
     {"green", colorBonus::green}, {"white", colorBonus::white},
     {"black", colorBonus::black}, {"joker", colorBonus::joker}};
 
@@ -230,35 +230,25 @@ vector<const JewelryCard *> initJewelryCards() {
 		if (jewelry_card_data["capacity"].is_null() &&
 		    jewelry_card_data["color_bonus"].is_null()) {
 
-			JewelryCard *instance =
-			    new JewelryCard(jewelry_card_data["prestige_points"],
-			                    jewelry_card_data["white_cost"],
-			                    jewelry_card_data["blue_cost"],
-			                    jewelry_card_data["red_cost"],
-			                    jewelry_card_data["green_cost"],
-			                    jewelry_card_data["black_cost"],
-			                    jewelry_card_data["perl_cost"],
-			                    jewelry_card_data["level"],
-			                    jewelry_card_data["crown_number"],
-			                    jewelry_card_data["bonus_number"], nullopt,
-			                    nullopt, visual);
+			JewelryCard *instance = new JewelryCard(
+			    jewelry_card_data["prestige_points"],
+			    jewelry_card_data["white_cost"], jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"], jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"], jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"], jewelry_card_data["crown_number"],
+			    jewelry_card_data["bonus_number"], nullopt, nullopt, visual);
 			jewelry_cards_instances.push_back(instance);
 		} else if (!jewelry_card_data["capacity"].is_null() &&
 		           jewelry_card_data["color_bonus"].is_null()) {
 
 			JewelryCard *instance = new JewelryCard(
 			    jewelry_card_data["prestige_points"],
-			    jewelry_card_data["white_cost"],
-			    jewelry_card_data["blue_cost"],
-			    jewelry_card_data["red_cost"],
-			    jewelry_card_data["green_cost"],
-			    jewelry_card_data["black_cost"],
-			    jewelry_card_data["perl_cost"],
-			    jewelry_card_data["level"],
-			    jewelry_card_data["crown_number"],
+			    jewelry_card_data["white_cost"], jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"], jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"], jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"], jewelry_card_data["crown_number"],
 			    jewelry_card_data["bonus_number"], nullopt,
-			    getCapacityFromString(jewelry_card_data["capacity"]),
-			    visual);
+			    getCapacityFromString(jewelry_card_data["capacity"]), visual);
 			jewelry_cards_instances.push_back(instance);
 
 		} else if (jewelry_card_data["capacity"].is_null() &&
@@ -266,40 +256,30 @@ vector<const JewelryCard *> initJewelryCards() {
 
 			JewelryCard *instance = new JewelryCard(
 			    jewelry_card_data["prestige_points"],
-			    jewelry_card_data["white_cost"],
-			    jewelry_card_data["blue_cost"],
-			    jewelry_card_data["red_cost"],
-			    jewelry_card_data["green_cost"],
-			    jewelry_card_data["black_cost"],
-			    jewelry_card_data["perl_cost"],
-			    jewelry_card_data["level"],
-			    jewelry_card_data["crown_number"],
+			    jewelry_card_data["white_cost"], jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"], jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"], jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"], jewelry_card_data["crown_number"],
 			    jewelry_card_data["bonus_number"],
-			    getBonusFromString(jewelry_card_data["color_bonus"]),
-			    nullopt, visual);
+			    getBonusFromString(jewelry_card_data["color_bonus"]), nullopt,
+			    visual);
 			jewelry_cards_instances.push_back(instance);
 		} else {
 
 			JewelryCard *instance = new JewelryCard(
 			    jewelry_card_data["prestige_points"],
-			    jewelry_card_data["white_cost"],
-			    jewelry_card_data["blue_cost"],
-			    jewelry_card_data["red_cost"],
-			    jewelry_card_data["green_cost"],
-			    jewelry_card_data["black_cost"],
-			    jewelry_card_data["perl_cost"],
-			    jewelry_card_data["level"],
-			    jewelry_card_data["crown_number"],
+			    jewelry_card_data["white_cost"], jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"], jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"], jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"], jewelry_card_data["crown_number"],
 			    jewelry_card_data["bonus_number"],
 			    getBonusFromString(jewelry_card_data["color_bonus"]),
-			    getCapacityFromString(jewelry_card_data["capacity"]),
-			    visual);
+			    getCapacityFromString(jewelry_card_data["capacity"]), visual);
 			jewelry_cards_instances.push_back(instance);
 		}
 	}
 	return jewelry_cards_instances;
 }
-
 
 json JewelryCard::toJson() const {
 	json j;
@@ -339,7 +319,6 @@ json RoyalCard::toJson() const {
 
 	return j;
 }
-
 
 void testInitCards() {
 

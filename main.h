@@ -72,8 +72,8 @@ void gameFromScratch(int argc, char *argv[]) {
 
 		if (from_error == 0) {
 			Game::getGame().getPlayerRound();
-			MainWindow::getMainWindow().setTopPlayerName(
-			    QString::fromStdString(Game::getGame().getOpponent().getName()));
+			MainWindow::getMainWindow().setTopPlayerName(QString::fromStdString(
+			    Game::getGame().getOpponent().getName()));
 			MainWindow::getMainWindow().setBottomPlayerName(
 			    QString::fromStdString(
 			        Game::getGame().getCurrentPlayer().getName()));
@@ -94,7 +94,8 @@ void gameFromScratch(int argc, char *argv[]) {
 
 			Game::getGame().getCurrentPlayer().tokenVerification_Qt();
 
-			if (Game::getGame().getCurrentPlayer().royalCardEligibility() == 1) {
+			if (Game::getGame().getCurrentPlayer().royalCardEligibility() ==
+			    1) {
 				Game::getGame().getCurrentPlayer().royalCardSelection_Qt();
 			}
 
@@ -183,14 +184,18 @@ void gameFromJson(int argc, char *argv[]) {
 		Game::getGame(data);
 
 		cout << "cards des joueurs : " << endl;
-		cout << Game::getGame().getCurrentPlayer().getBoughtCardNumber() << endl;
+		cout << Game::getGame().getCurrentPlayer().getBoughtCardNumber()
+		     << endl;
 		cout << Game::getGame().getOpponent().getBoughtCardNumber() << endl;
 
 		cout << "cards des tirages : " << endl;
 
-		cout << Game::getGame().getFirstDraw()->getCardsNumber() << endl << endl;
-		cout << Game::getGame().getSecondDraw()->getCardsNumber() << endl << endl;
-		cout << Game::getGame().getThirdDraw()->getCardsNumber() << endl << endl;
+		cout << Game::getGame().getFirstDraw()->getCardsNumber() << endl
+		     << endl;
+		cout << Game::getGame().getSecondDraw()->getCardsNumber() << endl
+		     << endl;
+		cout << Game::getGame().getThirdDraw()->getCardsNumber() << endl
+		     << endl;
 
 		cout << "cards royales : " << endl;
 		cout << Game::getGame().getRoyalCards().size() << endl;
@@ -240,8 +245,8 @@ void gameFromJson(int argc, char *argv[]) {
 
 		if (from_error == 0) {
 			Game::getGame().getPlayerRound();
-			MainWindow::getMainWindow().setTopPlayerName(
-			    QString::fromStdString(Game::getGame().getOpponent().getName()));
+			MainWindow::getMainWindow().setTopPlayerName(QString::fromStdString(
+			    Game::getGame().getOpponent().getName()));
 			MainWindow::getMainWindow().setBottomPlayerName(
 			    QString::fromStdString(
 			        Game::getGame().getCurrentPlayer().getName()));
@@ -259,7 +264,8 @@ void gameFromJson(int argc, char *argv[]) {
 
 			Game::getGame().getCurrentPlayer().tokenVerification_Qt();
 
-			if (Game::getGame().getCurrentPlayer().royalCardEligibility() == 1) {
+			if (Game::getGame().getCurrentPlayer().royalCardEligibility() ==
+			    1) {
 				Game::getGame().getCurrentPlayer().royalCardSelection_Qt();
 			}
 

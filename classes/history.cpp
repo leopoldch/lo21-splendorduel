@@ -25,8 +25,8 @@ StrategyPlayer &fromJsonStrategyPLayer(json data) {
 			player->setJewellryCardReserved(
 			    jewelryCardFromJson(data["reserved_jewelry_cards"]));
 			player->setRoyalCard(royalCardsFromJson(data["royal_cards"]));
-			player->setPrivileges(
-			    privilegesFromJson(data["privileges"], data["privilege_number"]));
+			player->setPrivileges(privilegesFromJson(data["privileges"],
+			                                         data["privilege_number"]));
 			return *player;
 		} else {
 			RandomPlayer *player = new RandomPlayer(tmp);
@@ -45,8 +45,8 @@ StrategyPlayer &fromJsonStrategyPLayer(json data) {
 			player->setJewellryCardReserved(
 			    jewelryCardFromJson(data["reserved_jewelry_cards"]));
 			player->setRoyalCard(royalCardsFromJson(data["royal_cards"]));
-			player->setPrivileges(
-			    privilegesFromJson(data["privileges"], data["privilege_number"]));
+			player->setPrivileges(privilegesFromJson(data["privileges"],
+			                                         data["privilege_number"]));
 			return *player;
 		}
 
@@ -69,8 +69,8 @@ StrategyPlayer &fromJsonStrategyPLayer(json data) {
 			player->setJewellryCardReserved(
 			    jewelryCardFromJson(data["reserved_jewelry_cards"]));
 			player->setRoyalCard(royalCardsFromJson(data["royal_cards"]));
-			player->setPrivileges(
-			    privilegesFromJson(data["privileges"], data["privilege_number"]));
+			player->setPrivileges(privilegesFromJson(data["privileges"],
+			                                         data["privilege_number"]));
 			return *player;
 		} else {
 			Player *player = new Player(tmp);
@@ -89,8 +89,8 @@ StrategyPlayer &fromJsonStrategyPLayer(json data) {
 			player->setJewellryCardReserved(
 			    jewelryCardFromJson(data["reserved_jewelry_cards"]));
 			player->setRoyalCard(royalCardsFromJson(data["royal_cards"]));
-			player->setPrivileges(
-			    privilegesFromJson(data["privileges"], data["privilege_number"]));
+			player->setPrivileges(privilegesFromJson(data["privileges"],
+			                                         data["privilege_number"]));
 			return *player;
 		}
 	}
@@ -112,7 +112,8 @@ Game::Game(json data) {
 	// tokens = tokensFromJson(data["tokens"]);
 
 	royal_cards = royalCardsFromJson(data["royal_cards"]);
-	privileges = privilegesFromJson(data["privileges"], data["privilege_number"]);
+	privileges =
+	    privilegesFromJson(data["privileges"], data["privilege_number"]);
 
 	cout << "init deck1\n" << endl;
 	deck1 = &deckFromJson(data["deck1"]);
@@ -222,7 +223,7 @@ void Hist() {
 }
 
 void Game::setPlayers(string &name1, string &name2, string &user_player_choice1,
-                     string &user_player_choice2) {
+                      string &user_player_choice2) {
 
 	if (name1 == name2) {
 		throw SplendorException("Players must be different!");
@@ -312,5 +313,5 @@ void Game::setPlayers(string &name1, string &name2, string &user_player_choice1,
 		}
 	}
 	opponent->obtainPrivilege(); // Le player qui ne commence pas démarre avec
-	                               // un privilège
+	                             // un privilège
 }

@@ -1,8 +1,8 @@
 #ifndef LO21_SPLENDOR_DUEL_PLATEAU_H
 #define LO21_SPLENDOR_DUEL_PLATEAU_H
 #include "Exception.h"
-#include "tokens.h"
 #include "bag.h"
+#include "tokens.h"
 #include <iostream>
 #include <vector>
 
@@ -144,9 +144,8 @@ class Board {
 		}
 	}
 	const Token *getElementToTheUpperRight(int i) const {
-		if ((i > 4) &&
-		    ((i + 1) % 5 != 0)) { // si le jeton n'est pas au level
-			                      // supérieur et sur un bord à right
+		if ((i > 4) && ((i + 1) % 5 != 0)) { // si le jeton n'est pas au level
+			                                 // supérieur et sur un bord à right
 			return tokens[i - 4];
 		} else {
 			return nullptr;

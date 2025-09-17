@@ -12,32 +12,24 @@ vector<const JewelryCard *> jewelryCardFromJson(json data) {
 
 		if ((jewelry_card_data["capacity"] == 0) &&
 		    (jewelry_card_data["color_bonus"] == 0)) {
-			JewelryCard *instance =
-			    new JewelryCard(jewelry_card_data["prestige_points"],
-			                    jewelry_card_data["white_cost"],
-			                    jewelry_card_data["blue_cost"],
-			                    jewelry_card_data["red_cost"],
-			                    jewelry_card_data["green_cost"],
-			                    jewelry_card_data["black_cost"],
-			                    jewelry_card_data["perl_cost"],
-			                    jewelry_card_data["level"],
-			                    jewelry_card_data["crown_number"],
-			                    jewelry_card_data["bonus_number"], nullopt,
-			                    nullopt, jewelry_card_data["visual"]);
+			JewelryCard *instance = new JewelryCard(
+			    jewelry_card_data["prestige_points"],
+			    jewelry_card_data["white_cost"], jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"], jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"], jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"], jewelry_card_data["crown_number"],
+			    jewelry_card_data["bonus_number"], nullopt, nullopt,
+			    jewelry_card_data["visual"]);
 			jewelry_cards_instances.push_back(instance);
 		} else if ((jewelry_card_data["capacity"] != 0) &&
 		           (jewelry_card_data["color_bonus"] == 0)) {
 
 			JewelryCard *instance = new JewelryCard(
 			    jewelry_card_data["prestige_points"],
-			    jewelry_card_data["white_cost"],
-			    jewelry_card_data["blue_cost"],
-			    jewelry_card_data["red_cost"],
-			    jewelry_card_data["green_cost"],
-			    jewelry_card_data["black_cost"],
-			    jewelry_card_data["perl_cost"],
-			    jewelry_card_data["level"],
-			    jewelry_card_data["crown_number"],
+			    jewelry_card_data["white_cost"], jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"], jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"], jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"], jewelry_card_data["crown_number"],
 			    jewelry_card_data["bonus_number"], nullopt,
 			    getCapacityFromString(jewelry_card_data["capacity"]),
 			    jewelry_card_data["visual"]);
@@ -48,30 +40,22 @@ vector<const JewelryCard *> jewelryCardFromJson(json data) {
 
 			JewelryCard *instance = new JewelryCard(
 			    jewelry_card_data["prestige_points"],
-			    jewelry_card_data["white_cost"],
-			    jewelry_card_data["blue_cost"],
-			    jewelry_card_data["red_cost"],
-			    jewelry_card_data["green_cost"],
-			    jewelry_card_data["black_cost"],
-			    jewelry_card_data["perl_cost"],
-			    jewelry_card_data["level"],
-			    jewelry_card_data["crown_number"],
+			    jewelry_card_data["white_cost"], jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"], jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"], jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"], jewelry_card_data["crown_number"],
 			    jewelry_card_data["bonus_number"],
-			    getBonusFromString(jewelry_card_data["color_bonus"]),
-			    nullopt, jewelry_card_data["visual"]);
+			    getBonusFromString(jewelry_card_data["color_bonus"]), nullopt,
+			    jewelry_card_data["visual"]);
 			jewelry_cards_instances.push_back(instance);
 		} else {
 
 			JewelryCard *instance = new JewelryCard(
 			    jewelry_card_data["prestige_points"],
-			    jewelry_card_data["white_cost"],
-			    jewelry_card_data["blue_cost"],
-			    jewelry_card_data["red_cost"],
-			    jewelry_card_data["green_cost"],
-			    jewelry_card_data["black_cost"],
-			    jewelry_card_data["perl_cost"],
-			    jewelry_card_data["level"],
-			    jewelry_card_data["crown_number"],
+			    jewelry_card_data["white_cost"], jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"], jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"], jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"], jewelry_card_data["crown_number"],
 			    jewelry_card_data["bonus_number"],
 			    getBonusFromString(jewelry_card_data["color_bonus"]),
 			    getCapacityFromString(jewelry_card_data["capacity"]),
@@ -150,9 +134,8 @@ void boardFromJson(json data) {
 	tokens = tokensFromJson(data["tokens"]);
 
 	if (tokens.size() > data["nb"]) {
-		throw SplendorException(
-		    "erreur dans le nombre de tokens sur le board. "
-		    "La partie ne peut pas être chargée.");
+		throw SplendorException("erreur dans le nombre de tokens sur le board. "
+		                        "La partie ne peut pas être chargée.");
 	}
 	int number_jetons_saved = tokens.size();
 	for (int i = number_jetons_saved; i < data["nb"]; ++i) {
@@ -173,7 +156,7 @@ void bagFromJson(json data) {
 			s.insertToken(tokens[i]);
 		}
 
-		s.setAmountofToken(data["nb"]); // normalement pas besoin de reset nb mais on
-		                          // sait jamais
+		s.setAmountofToken(data["nb"]); // normalement pas besoin de reset nb
+		                                // mais on sait jamais
 	}
 }

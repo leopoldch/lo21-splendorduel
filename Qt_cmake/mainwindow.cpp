@@ -617,7 +617,8 @@ void MainWindow::updateDraws() {
 	}
 
 	// Bottom
-	int bottom_privileges = Game::getGame().getCurrentPlayer().getPrivilegeNumber();
+	int bottom_privileges =
+	    Game::getGame().getCurrentPlayer().getPrivilegeNumber();
 	bottomPrivileges->setText(
 	    "Nombre privilèges: " +
 	    QString::fromStdString(std::to_string(bottom_privileges)));
@@ -821,16 +822,19 @@ void MainWindow::activateTokens() {
 
 void MainWindow::activateForReserve() {
 	// Draw 1
-	for (int i = 0; i < Game::getGame().getFirstDraw()->getTirage().size(); i++) {
+	for (int i = 0; i < Game::getGame().getFirstDraw()->getTirage().size();
+	     i++) {
 		getTirages()->getTier1()[i]->setEnabled(true);
 	}
 
 	// Draw 2
-	for (int i = 0; i < Game::getGame().getSecondDraw()->getTirage().size(); i++) {
+	for (int i = 0; i < Game::getGame().getSecondDraw()->getTirage().size();
+	     i++) {
 		getTirages()->getTier2()[i]->setEnabled(true);
 	}
 
-	for (int i = 0; i < Game::getGame().getThirdDraw()->getTirage().size(); i++) {
+	for (int i = 0; i < Game::getGame().getThirdDraw()->getTirage().size();
+	     i++) {
 		getTirages()->getTier3()[i]->setEnabled(true);
 	}
 
@@ -847,17 +851,20 @@ void MainWindow::activateForReserve() {
 void MainWindow::activateForBuy() {
 	qDebug() << "ACtiate for buy";
 	// Draw 1
-	for (int i = 0; i < Game::getGame().getFirstDraw()->getTirage().size(); i++) {
+	for (int i = 0; i < Game::getGame().getFirstDraw()->getTirage().size();
+	     i++) {
 		getTirages()->getTier1()[i]->setEnabled(true);
 	}
 
 	// Draw 2
-	for (int i = 0; i < Game::getGame().getSecondDraw()->getTirage().size(); i++) {
+	for (int i = 0; i < Game::getGame().getSecondDraw()->getTirage().size();
+	     i++) {
 		getTirages()->getTier2()[i]->setEnabled(true);
 	}
 
 	// Draw 3
-	for (int i = 0; i < Game::getGame().getThirdDraw()->getTirage().size(); i++) {
+	for (int i = 0; i < Game::getGame().getThirdDraw()->getTirage().size();
+	     i++) {
 		getTirages()->getTier3()[i]->setEnabled(true);
 	}
 

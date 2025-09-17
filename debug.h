@@ -34,10 +34,10 @@ void gameFromScratch() {
 
 	Game::getGame().setPlayers();
 
-	cout
-	    << "Le game est sur le point de commencer !\nC'est au joueur1 d'engager "
-	       "la partie !"
-	    << endl;
+	cout << "Le game est sur le point de commencer !\nC'est au joueur1 "
+	        "d'engager "
+	        "la partie !"
+	     << endl;
 
 	unsigned int from_error = 0;
 
@@ -100,7 +100,8 @@ void gameFromScratch() {
 
 			Game::getGame().getCurrentPlayer().choice();
 			Game::getGame().getCurrentPlayer().tokenVerification();
-			if (Game::getGame().getCurrentPlayer().royalCardEligibility() == 1) {
+			if (Game::getGame().getCurrentPlayer().royalCardEligibility() ==
+			    1) {
 				Game::getGame().getCurrentPlayer().royalCardSelection();
 			}
 			Game::getGame().nextRound();
@@ -237,7 +238,8 @@ void gameFromJson() {
 
 			Game::getGame().getCurrentPlayer().choice();
 			Game::getGame().getCurrentPlayer().tokenVerification();
-			if (Game::getGame().getCurrentPlayer().royalCardEligibility() == 1) {
+			if (Game::getGame().getCurrentPlayer().royalCardEligibility() ==
+			    1) {
 				Game::getGame().getCurrentPlayer().royalCardSelection();
 			}
 			Game::getGame().nextRound();

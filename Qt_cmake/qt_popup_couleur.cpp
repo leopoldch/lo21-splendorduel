@@ -18,7 +18,8 @@ popupCouleur::popupCouleur(QWidget *parent) : QDialog(parent) {
 
 	QLabel *nombreLabel = new QLabel("Nombre :", this);
 	comboBoxNb = new QComboBox(this);
-	for (int i = 1; i <= Game::getGame().getCurrentPlayer().TokenAmount(Color::gold);
+	for (int i = 1;
+	     i <= Game::getGame().getCurrentPlayer().TokenAmount(Color::gold);
 	     i++) {
 		comboBoxNb->addItem(QString::fromStdString(std::to_string(i)));
 	}

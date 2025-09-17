@@ -13,7 +13,8 @@ class PlayerInputDialog : public QDialog {
 	PlayerInputDialog(QWidget *parent = nullptr);
 
   signals:
-	void inputValuesSubmitted(QString name1, QString name2, QString user_player_choice1,
+	void inputValuesSubmitted(QString name1, QString name2,
+	                          QString user_player_choice1,
 	                          QString user_player_choice2);
 
   private slots:
