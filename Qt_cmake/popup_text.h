@@ -1,7 +1,7 @@
 #ifndef POPUP_TEXT_H
 #define POPUP_TEXT_H
 
-#include "../classes/jeu.h"
+#include "../classes/game.h"
 #include <QComboBox>
 #include <QDialog>
 #include <QLineEdit>
@@ -9,26 +9,26 @@
 #include <QVBoxLayout>
 
 class InputPopup : public QDialog {
-  Q_OBJECT
+	Q_OBJECT
 
-public:
-  explicit InputPopup(QWidget *parent = nullptr);
+  public:
+	explicit InputPopup(QWidget *parent = nullptr);
 
-signals:
-  void inputSubmitted(const QString &input);
+  signals:
+	void inputSubmitted(const QString &input);
 
-private slots:
-  void onSubmitClicked();
+  private slots:
+	void onSubmitClicked();
 
-private:
-  QLineEdit *lineEdit1;
-  QLineEdit *lineEdit2;
+  private:
+	QLineEdit *lineEdit1;
+	QLineEdit *lineEdit2;
 
-  QComboBox *comboBox1;
-  QComboBox *comboBox2;
+	QComboBox *comboBox1;
+	QComboBox *comboBox2;
 
-  QPushButton *submitButton;
-  Jeu *jeu;
+	QPushButton *submitButton;
+	Game *game;
 };
 
 #endif // POPUP_TEXT_H

@@ -2,7 +2,7 @@
 
 ## LO21 : Projet Splendor Duel
 
-Petri Gaspard, Chappuis Léopold, Fouinat--Beal Quentin, Ghitu Alexandru, Vert Aubin
+Petri Gaspard, Chappuis Léopold, Fouinat--Beal Quentin, Ghitu Alexandru, Green Aubin
 
 ## Introduction
 

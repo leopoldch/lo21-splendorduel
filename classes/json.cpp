@@ -4,176 +4,176 @@
 
 #include "json.h"
 
-vector<const JewelryCard *> fromJsonJewelryCard(json data) {
-  // cout<<data.dump(2)<<endl;
+vector<const JewelryCard *> jewelryCardFromJson(json data) {
 
-  // fix les noms avec getCapacityFromString & getBonusFromString
+	std::vector<const JewelryCard *> jewelry_cards_instances;
 
-  std::vector<const JewelryCard *> cartes_joailleries_instances;
+	for (const auto &jewelry_card_data : data) {
 
-  for (const auto &carte_joaillerie_data : data) {
+		if ((jewelry_card_data["capacity"] == 0) &&
+		    (jewelry_card_data["color_bonus"] == 0)) {
+			JewelryCard *instance =
+			    new JewelryCard(jewelry_card_data["prestige_points"],
+			                    jewelry_card_data["white_cost"],
+			                    jewelry_card_data["blue_cost"],
+			                    jewelry_card_data["red_cost"],
+			                    jewelry_card_data["green_cost"],
+			                    jewelry_card_data["black_cost"],
+			                    jewelry_card_data["perl_cost"],
+			                    jewelry_card_data["level"],
+			                    jewelry_card_data["crown_number"],
+			                    jewelry_card_data["bonus_number"], nullopt,
+			                    nullopt, jewelry_card_data["visual"]);
+			jewelry_cards_instances.push_back(instance);
+		} else if ((jewelry_card_data["capacity"] != 0) &&
+		           (jewelry_card_data["color_bonus"] == 0)) {
 
-    if ((carte_joaillerie_data["capacite"] == 0) &&
-        (carte_joaillerie_data["bonus_couleur"] == 0)) {
-      JewelryCard *instance = new JewelryCard(
-          carte_joaillerie_data["points_prestige"],
-          carte_joaillerie_data["cout_blanc"],
-          carte_joaillerie_data["cout_bleu"],
-          carte_joaillerie_data["cout_rouge"],
-          carte_joaillerie_data["cout_vert"],
-          carte_joaillerie_data["cout_noir"],
-          carte_joaillerie_data["cout_perle"], carte_joaillerie_data["niveau"],
-          carte_joaillerie_data["nb_couronne"],
-          carte_joaillerie_data["bonus_nombre"], nullopt, nullopt,
-          carte_joaillerie_data["visuel"]);
-      cartes_joailleries_instances.push_back(instance);
-    } else if ((carte_joaillerie_data["capacite"] != 0) &&
-               (carte_joaillerie_data["bonus_couleur"] == 0)) {
+			JewelryCard *instance = new JewelryCard(
+			    jewelry_card_data["prestige_points"],
+			    jewelry_card_data["white_cost"],
+			    jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"],
+			    jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"],
+			    jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"],
+			    jewelry_card_data["crown_number"],
+			    jewelry_card_data["bonus_number"], nullopt,
+			    getCapacityFromString(jewelry_card_data["capacity"]),
+			    jewelry_card_data["visual"]);
+			jewelry_cards_instances.push_back(instance);
 
-      JewelryCard *instance = new JewelryCard(
-          carte_joaillerie_data["points_prestige"],
-          carte_joaillerie_data["cout_blanc"],
-          carte_joaillerie_data["cout_bleu"],
-          carte_joaillerie_data["cout_rouge"],
-          carte_joaillerie_data["cout_vert"],
-          carte_joaillerie_data["cout_noir"],
-          carte_joaillerie_data["cout_perle"], carte_joaillerie_data["niveau"],
-          carte_joaillerie_data["nb_couronne"],
-          carte_joaillerie_data["bonus_nombre"], nullopt,
-          getCapaciteFromString(carte_joaillerie_data["capacite"]),
-          carte_joaillerie_data["visuel"]);
-      cartes_joailleries_instances.push_back(instance);
+		} else if ((jewelry_card_data["capacity"] == 0) &&
+		           (jewelry_card_data["color_bonus"] != 0)) {
 
-    } else if ((carte_joaillerie_data["capacite"] == 0) &&
-               (carte_joaillerie_data["bonus_couleur"] != 0)) {
+			JewelryCard *instance = new JewelryCard(
+			    jewelry_card_data["prestige_points"],
+			    jewelry_card_data["white_cost"],
+			    jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"],
+			    jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"],
+			    jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"],
+			    jewelry_card_data["crown_number"],
+			    jewelry_card_data["bonus_number"],
+			    getBonusFromString(jewelry_card_data["color_bonus"]),
+			    nullopt, jewelry_card_data["visual"]);
+			jewelry_cards_instances.push_back(instance);
+		} else {
 
-      JewelryCard *instance = new JewelryCard(
-          carte_joaillerie_data["points_prestige"],
-          carte_joaillerie_data["cout_blanc"],
-          carte_joaillerie_data["cout_bleu"],
-          carte_joaillerie_data["cout_rouge"],
-          carte_joaillerie_data["cout_vert"],
-          carte_joaillerie_data["cout_noir"],
-          carte_joaillerie_data["cout_perle"], carte_joaillerie_data["niveau"],
-          carte_joaillerie_data["nb_couronne"],
-          carte_joaillerie_data["bonus_nombre"],
-          getBonusFromString(carte_joaillerie_data["bonus_couleur"]), nullopt,
-          carte_joaillerie_data["visuel"]);
-      cartes_joailleries_instances.push_back(instance);
-    } else {
-
-      JewelryCard *instance = new JewelryCard(
-          carte_joaillerie_data["points_prestige"],
-          carte_joaillerie_data["cout_blanc"],
-          carte_joaillerie_data["cout_bleu"],
-          carte_joaillerie_data["cout_rouge"],
-          carte_joaillerie_data["cout_vert"],
-          carte_joaillerie_data["cout_noir"],
-          carte_joaillerie_data["cout_perle"], carte_joaillerie_data["niveau"],
-          carte_joaillerie_data["nb_couronne"],
-          carte_joaillerie_data["bonus_nombre"],
-          getBonusFromString(carte_joaillerie_data["bonus_couleur"]),
-          getCapaciteFromString(carte_joaillerie_data["capacite"]),
-          carte_joaillerie_data["visuel"]);
-      cartes_joailleries_instances.push_back(instance);
-    }
-  }
-  return cartes_joailleries_instances;
+			JewelryCard *instance = new JewelryCard(
+			    jewelry_card_data["prestige_points"],
+			    jewelry_card_data["white_cost"],
+			    jewelry_card_data["blue_cost"],
+			    jewelry_card_data["red_cost"],
+			    jewelry_card_data["green_cost"],
+			    jewelry_card_data["black_cost"],
+			    jewelry_card_data["perl_cost"],
+			    jewelry_card_data["level"],
+			    jewelry_card_data["crown_number"],
+			    jewelry_card_data["bonus_number"],
+			    getBonusFromString(jewelry_card_data["color_bonus"]),
+			    getCapacityFromString(jewelry_card_data["capacity"]),
+			    jewelry_card_data["visual"]);
+			jewelry_cards_instances.push_back(instance);
+		}
+	}
+	return jewelry_cards_instances;
 }
 
-vector<const RoyalCard *> fromJsonRoyalCard(json data) {
+vector<const RoyalCard *> royalCardsFromJson(json data) {
 
-  std::vector<const RoyalCard *> cartes_royales_instances;
+	std::vector<const RoyalCard *> royal_cards_instances;
 
-  for (const auto &carte_royale_data : data) {
+	for (const auto &royal_card_data : data) {
 
-    if (carte_royale_data["capacite"] != NULL) {
-      RoyalCard *instance =
-          new RoyalCard(carte_royale_data["points_prestige"],
-                        getCapaciteFromString(carte_royale_data["capacite"]),
-                        carte_royale_data["visuel"]);
-      cartes_royales_instances.push_back(instance);
-    } else {
-      RoyalCard *instance = new RoyalCard(carte_royale_data["points_prestige"],
-                                          nullopt, carte_royale_data["visuel"]);
-      cartes_royales_instances.push_back(instance);
-    }
-  }
-  return cartes_royales_instances;
+		if (royal_card_data["capacity"] != NULL) {
+			RoyalCard *instance = new RoyalCard(
+			    royal_card_data["prestige_points"],
+			    getCapacityFromString(royal_card_data["capacity"]),
+			    royal_card_data["visual"]);
+			royal_cards_instances.push_back(instance);
+		} else {
+			RoyalCard *instance =
+			    new RoyalCard(royal_card_data["prestige_points"], nullopt,
+			                  royal_card_data["visual"]);
+			royal_cards_instances.push_back(instance);
+		}
+	}
+	return royal_cards_instances;
 }
 
-vector<const Jeton *> fromJsonJetons(json data) {
-  std::vector<const Jeton *> tab_jetons;
-  for (const auto &jeton : data) {
-    if (jeton != nullptr) {
-      Jeton *tmp = new Jeton(jeton["id"], jeton["color"], jeton["visuel"]);
-      tab_jetons.push_back(tmp);
-    } else {
-      tab_jetons.push_back(nullptr);
-    }
-  }
-  return tab_jetons;
+vector<const Token *> tokensFromJson(json data) {
+	std::vector<const Token *> token_array;
+	for (const auto &jeton : data) {
+		if (jeton != nullptr) {
+			Token *tmp =
+			    new Token(jeton["id"], jeton["color"], jeton["visual"]);
+			token_array.push_back(tmp);
+		} else {
+			token_array.push_back(nullptr);
+		}
+	}
+	return token_array;
 }
 
-vector<const Privilege *> fromJsonPrivileges(json data, unsigned int nb) {
-  if (nb > 3) {
-    throw SplendorException(
-        "On ne peut pas avoir plus de 3 privilèges. Le json est corrompu.");
-  }
-  std::vector<const Privilege *> tab;
-  for (int i = 0; i < nb; ++i) {
-    tab.push_back(Privilege::getForJson(data[i]["id"]));
-  }
-  return tab;
+vector<const Privilege *> privilegesFromJson(json data, unsigned int nb) {
+	if (nb > 3) {
+		throw SplendorException(
+		    "On ne peut pas avoir plus de 3 privilèges. Le json est corrompu.");
+	}
+	std::vector<const Privilege *> privilege_array;
+	for (int i = 0; i < nb; ++i) {
+		privilege_array.push_back(Privilege::getForJson(data[i]["id"]));
+	}
+	return privilege_array;
 }
 
-Pioche &fromJsonPioche(json data) {
-  // ici on doit init les jewellery cards
-  Pioche *p = new Pioche(data["niveau"]);
-  p->setPioche(fromJsonJewelryCard(data["cartes_joailleries"]));
-  return *p;
+Deck &deckFromJson(json data) {
+	Deck *p = new Deck(data["level"]);
+	p->setDeck(jewelryCardFromJson(data["jewelry_cards"]));
+	return *p;
 }
 
-Tirage &fromJsonTirage(json data, Pioche &p) {
-  Tirage *t = new Tirage(data["niveau"], data["max_cartes"], p);
-  t->setNbCartes(data["nb_cartes"]);
-  t->setTirage(fromJsonJewelryCard(data["cartes_joailleries"]));
-  return *t;
+Draw &drawFromJson(json data, Deck &p) {
+	Draw *t = new Draw(data["level"], data["max_cards"], p);
+	t->setNbCartes(data["cards_number"]);
+	t->setTirage(jewelryCardFromJson(data["jewelry_cards"]));
+	return *t;
 }
 
-void fromJsonPlateau(json data) {
-  Plateau &p = Plateau::get_plateau();
-  p.setNb(data["nb"]);
-  // on récupère les jetons et on les met tous en sac uns par uns ?
-  vector<const Jeton *> jetons;
-  jetons = fromJsonJetons(data["jetons"]);
+void boardFromJson(json data) {
+	Board &p = Board::getBoard();
+	p.setNb(data["nb"]);
+	vector<const Token *> tokens;
+	tokens = tokensFromJson(data["tokens"]);
 
-  if (jetons.size() > data["nb"]) {
-    throw SplendorException("erreur dans le nombre de jetons sur le plateau. "
-                            "La partie ne peut pas être chargée.");
-  }
-  int number_jetons_saved = jetons.size();
-  for (int i = number_jetons_saved; i < data["nb"]; ++i) {
-    jetons.push_back(nullptr);
-  }
-  p.setJetons(jetons);
-  // cout<<*jetons[0]<<endl;
-  p.setCurrentNb(data["current_nb"]);
+	if (tokens.size() > data["nb"]) {
+		throw SplendorException(
+		    "erreur dans le nombre de tokens sur le board. "
+		    "La partie ne peut pas être chargée.");
+	}
+	int number_jetons_saved = tokens.size();
+	for (int i = number_jetons_saved; i < data["nb"]; ++i) {
+		tokens.push_back(nullptr);
+	}
+	p.setJetons(tokens);
+	p.setCurrentNb(data["current_nb"]);
 }
 
-void fromJsonSac(json data) {
-  if (data["nb"] != 0 && !data["jetons"].is_null()) {
-    Sac &s = Sac::get_sac();
-    // on récupère les jetons et on les met tous en sac uns par uns ?
-    vector<const Jeton *> jetons;
+void bagFromJson(json data) {
+	if (data["nb"] != 0 && !data["tokens"].is_null()) {
+		Bag &s = Bag::get();
+		vector<const Token *> tokens;
 
-    jetons = fromJsonJetons(data["jetons"]);
+		tokens = tokensFromJson(data["tokens"]);
 
-    for (int i = 0; i < jetons.size(); ++i) {
-      s.mettre_jeton_sac(jetons[i]);
-    }
+		for (int i = 0; i < tokens.size(); ++i) {
+			s.insertToken(tokens[i]);
+		}
 
-    s.set_nb_sac(
-        data["nb"]); // normalement pas besoin de reset nb mais on sait jamais
-  }
+		s.setAmountofToken(data["nb"]); // normalement pas besoin de reset nb mais on
+		                          // sait jamais
+	}
 }

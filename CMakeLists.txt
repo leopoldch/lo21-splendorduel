@@ -9,31 +9,41 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 qt_standard_project_setup()
 
+find_program(CLANG_FORMAT clang-format)
+
+if(CLANG_FORMAT)
+    add_custom_target(format
+        COMMAND ${CLANG_FORMAT}
+        -i
+        ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/*.h
+    )
+endif()
 
 add_executable(lo21-splendor-duel
 
         main.h
         main.cpp
 
-        classes/carte.cpp
-        classes/carte.h
+        classes/card.cpp
+        classes/card.h
         classes/Exception.h
-        classes/jetons.cpp
-        classes/jetons.h
-        classes/jeu.cpp
-        classes/jeu.h
-        classes/joueur.cpp
-        classes/joueur.h
-        classes/pioche.cpp
-        classes/pioche.h
-        classes/plateau.cpp
-        classes/plateau.h
+        classes/tokens.cpp
+        classes/tokens.h
+        classes/game.cpp
+        classes/game.h
+        classes/player.cpp
+        classes/player.h
+        classes/deck.cpp
+        classes/deck.h
+        classes/board.cpp
+        classes/board.h
         classes/privilege.cpp
         classes/privilege.h
-        classes/sac.cpp
-        classes/sac.h
-        classes/tirage.cpp
-        classes/tirage.h
+        classes/bag.cpp
+        classes/bag.h
+        classes/draw.cpp
+        classes/draw.h
         classes/json.cpp
         classes/json.h
         classes/history.cpp

@@ -27,8 +27,8 @@
 
                 Il y a * *
                 25 jetons **.Il y en a -
-            4 de chacune des cinq couleurs des **gemmes **(bleu, blanc, vert,
-                                                           noir et red)
+            4 de chacune des cinq couleurs des **gemmes **(blue, white, green,
+                                                           black et red)
                 .-
             2 * *perles * * -3 * *or
         **.
@@ -176,7 +176,7 @@ de prestige **.-
 - Cartes_niv1
 - Cartes_niv2
 - Cartes_niv3
-- Cartes_royales
+- royal_cards
 - Privilèges
 - Terminé ou pas
 

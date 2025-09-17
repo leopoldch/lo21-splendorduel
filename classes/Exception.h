@@ -7,11 +7,11 @@
 #include <iostream>
 
 class SplendorException {
-  std::string info;
+	std::string info;
 
-public:
-  SplendorException(const std::string &str) : info(str) {}
-  std::string getInfos() const { return info; }
+  public:
+	SplendorException(const std::string &str) : info(str) {}
+	std::string getInfo() const { return info; }
 };
 
 #endif // LO21_SPLENDOR_DUEL_EXCEPTION_H

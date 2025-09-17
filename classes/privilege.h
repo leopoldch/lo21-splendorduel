@@ -1,56 +1,56 @@
 #ifndef LO21_SPLENDOR_DUEL_PRIVILEGE_H
 #define LO21_SPLENDOR_DUEL_PRIVILEGE_H
 #include "Exception.h"
-#include "carte.h"
+#include "card.h"
 #include <iostream>
 #include <stdexcept>
 #include <vector>
 
 class Privilege {
-private:
-  const int id;
-  static int instanceCount; // Compteur d'instances actuelles
-  static const int maxInstances = 3;
-  Privilege(const Privilege &) = delete;
-  Privilege &operator=(const Privilege &) = delete;
-  Privilege() : id(instanceCount) {}
-  Privilege(int id) : id(id) {}
+  private:
+	const int id;
+	static int instanceCount; // Compteur d'instances actuelles
+	static const int maxInstances = 3;
+	Privilege(const Privilege &) = delete;
+	Privilege &operator=(const Privilege &) = delete;
+	Privilege() : id(instanceCount) {}
+	Privilege(int id) : id(id) {}
 
-public:
-  json toJson() const {
-    json j;
-    j["id"] = id;
-    return j;
-  }
+  public:
+	json toJson() const {
+		json j;
+		j["id"] = id;
+		return j;
+	}
 
-  static Privilege *getForJson(int id) {
-    if (instanceCount < maxInstances) {
-      ++instanceCount;
-      return new Privilege(id);
-    }
-    throw SplendorException("Nombres d'instances de privileges depasse");
-  }
+	static Privilege *getForJson(int id) {
+		if (instanceCount < maxInstances) {
+			++instanceCount;
+			return new Privilege(id);
+		}
+		throw SplendorException("Nombres d'instances de privileges depasse");
+	}
 
-  const int get_id() const { return id; }
-  static int getCount() { return instanceCount; }
+	const int getId() const { return id; }
+	static int getCount() { return instanceCount; }
 
-  // Méthode statique pour obtenir une instance de la classe
-  static const Privilege *GetInstance() {
-    if (instanceCount < maxInstances) {
-      ++instanceCount;
-      return new Privilege();
-    }
-    throw SplendorException("Nombres d'instances de privileges depassé");
-  }
+	// Méthode statique pour obtenir une instance de la classe
+	static const Privilege *GetInstance() {
+		if (instanceCount < maxInstances) {
+			++instanceCount;
+			return new Privilege();
+		}
+		throw SplendorException("Nombres d'instances de privileges depassé");
+	}
 
-  ~Privilege() { instanceCount = 0; }
+	~Privilege() { instanceCount = 0; }
 
-  static int get_max_instance() { return maxInstances; }
+	static int getMaxInstance() { return maxInstances; }
 };
 
 inline std::ostream &operator<<(std::ostream &f, const Privilege &p) {
-  f << "Id : " << p.get_id();
-  return f;
+	f << "Id : " << p.getId();
+	return f;
 }
 std::vector<const Privilege *> initPrivileges();
 

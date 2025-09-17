@@ -1,17 +1,17 @@
 @startuml class Sac {
-  - nb:int - max:int - jetons:Jeton[]
+  - nb:int - max:int - tokens:Token[]
 }
 
 class Tirage {
-  - niveau:int - nb:int - max:int - cartes:Cartes *[max] - pioche:Pioche *
+  - level:int - nb:int - max:int - cartes:Cartes *[max] - pioche:Pioche *
 
 }
 
 class Plateau {
-  - nb:int - max:int - jetons:Jeton *[][] - sac:Sac *
+  - nb:int - max:int - tokens:Token *[][] - bag:Sac *
 }
 
-class Jeton {
+class Token {
 
   - id:int
 
@@ -19,7 +19,7 @@ class Jeton {
 
 class Jeton_gemme {
 
-  - type:enum<bleu, red, vert, blanc, noir>
+  - type:enum<blue, red, green, white, black>
 }
 
 class Jeton_or {
@@ -35,17 +35,17 @@ class Privilege {
 }
 
 class Card {
-  - capacite:capacite{nullable} - points_prestige:int {
+  - capacity:capacity{nullable} - prestige_points:int {
     nullable
   }
 }
 
 class JewelryCard {
-  - cout_blanc:int -
-          cout_bleu:int - cout_vert:int - cout_rouge:int - cout_noir:int -
-         cout_perle:int - niveau:int - nb_couronnes:int[0, 3] -
-      bonus_couleur:enum<bleu, blanc, red, vert, noir, multiple> -
-       bonus_nombre:int[0, 2] - est_reservee:bool
+  - white_cost:int -
+          blue_cost:int - green_cost:int - red_cost:int - black_cost:int -
+         perl_cost:int - level:int - nb_couronnes:int[0, 3] -
+      color_bonus:enum<blue, white, red, green, black, multiple> -
+       bonus_number:int[0, 2] - est_reservee:bool
 }
 
 class RoyalCard {
@@ -53,31 +53,31 @@ class RoyalCard {
 }
 
 class Joueur {
-  - nom:str -
-              nb_points:int - nb_courones:int - nb_cartes_j:int -
-            nb_cartes_r:int - nb_privileges:int - max_nb_privileges:int -
+  - name:str -
+              points_number:int - crown_number:int - jewelry_cards_number:int -
+            royal_cards_number:int - privilege_number:int - max_nb_privileges:int -
           max_nb_jetons:int - max_nb_cartes_r:int - cartes_j:JewelryCard *[] -
-               cartes_r:RoyalCard *[] - jetons:Jeton[] -
+               cartes_r:RoyalCard *[] - tokens:Token[] -
              privileges:Privilege *[]
 }
 
 class Jeu {
-  - est_termine:bool - est_contre_AI:bool - qui_joue:Joueur - opponent:Joueur
+  - is_finished:bool - est_contre_AI:bool - who_plays:Joueur - opponent:Joueur
 }
 
 class Pioche {
-  - niveau:int - nb:int - max:int - cartes:Cartes *[max]
+  - level:int - nb:int - max:int - cartes:Cartes *[max]
 
 }
 
-        Sac o-- "0..*" Jeton : sont présents dans >
+        Sac o-- "0..*" Token : sont présents dans >
 
-                               Plateau o-- "0..*" Jeton
+                               Plateau o-- "0..*" Token
     : sont sur >
 
       Joueur o-- l "0..3" Privilege : détienir > Joueur o-- "0..3" JewelryCard
     : réserver > Joueur o-- "0..*" JewelryCard
-    : posséder > Joueur o-- "0..10" Jeton
+    : posséder > Joueur o-- "0..10" Token
     : posséder > Joueur o-- "0..2" RoyalCard : posséder >
 
                                                Pioche "1" --"*" JewelryCard
@@ -88,17 +88,17 @@ class Pioche {
                                         Joueur-- * Jeu : composer> Jeu *
                                     --"1" Plateau : contenir >
       Jeu * --r "1" Sac : contenir > Jeu * --"67" Card : contenir >
-      Jeu * --"0..3" Privilege : contenir > Jeu * --"1..*" Jeton : contenir >
+      Jeu * --"0..3" Privilege : contenir > Jeu * --"1..*" Token : contenir >
       JewelryCard-- ^
     Card RoyalCard-- ^
     Card
 
         Jeton_or-- u ^
-    Jeton Jeton_gemme-- u ^ Jeton Jeton_perle-- u ^
-    Jeton
+    Token Jeton_gemme-- u ^ Token Jeton_perle-- u ^
+    Token
 
-        Jeton : str
-                getId() const Jeton : bool getDispo() const
+        Token : str
+                getId() const Token : bool getDispo() const
 
                                       Joueur : int getPoints() const Joueur
     : int setPoints() Joueur : int getCouronnes() const Joueur
@@ -109,14 +109,14 @@ class Pioche {
     : void prendrePrivilege() Joueur : int getPrivilege() Joueur
     : void obtenirCarteRoyale() const
 
-      Card : Capacity getCapacite() const Card : int getPrestige() const Card
+      Card : Capacity getCapacity() const Card : int getPrestige() const Card
     : void getCarte() const
 
       JewelryCard : int getCostWhite() const JewelryCard
     : int getCostGreen() const JewelryCard : int getCostRed() const JewelryCard
     : int getCostBlack() const JewelryCard : int getCostPerl() const JewelryCard
     : void setCouts() JewelryCard : int getCouronnes() const JewelryCard
-    : bonus_couleur getBonusCouleur() const JewelryCard
+    : color_bonus getBonusCouleur() const JewelryCard
     : int getBonusNombre() const
 
       Jeu : Joueur &getTour() const Jeu : void tourSuivant()

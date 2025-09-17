@@ -4,7 +4,7 @@
 
 #Rapport 1:
 
-Petri Gaspard, Leopold Chappuis, Fouinat Quentin, Ghitu Alexandru (co-reponsable), Vert Aubin (co-responsable)
+Petri Gaspard, Leopold Chappuis, Fouinat Quentin, Ghitu Alexandru (co-reponsable), Green Aubin (co-responsable)
 
 ## Introduction du projet
 
@@ -66,7 +66,7 @@ Afin de gagner le jeu, un joueur doit remplir l’une des conditions suivantes :
 
 Il y a **25 jetons**. Il y en a 
 
-- 4 de chacune des cinq couleurs des **gemmes** (bleu, blanc, vert, noir et red).
+- 4 de chacune des cinq couleurs des **gemmes** (blue, white, green, black et red).
 - 2 **perles.**
 - 3 **or**.
 
@@ -86,7 +86,7 @@ A la fin de chaque tour, le joueur peut posséder **au plus 10 jetons**. S’il 
 
 **Remarques** :
 
-- Les jetons seront implémentés sous forme d’héritage pour les gemmes, or et perle (voir UML).
+- Les jetons seront implémentés sous forme d’héritage pour les gemmes, or et perl (voir UML).
 - Si le joueur prend 3 jetons de la même couleur ou 2 jetons perles lors d’un tour, son adversaire gagne 1 privilège.
 
 ## Cartes

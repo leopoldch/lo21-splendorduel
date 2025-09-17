@@ -1,30 +1,30 @@
 @startuml class Sac {
-  - nb:int - max:int - jetons:const Jeton *[] - handler_sac:static Handler_sac
+  - nb:int - max:int - tokens:const Token *[] - handler_sac:static Handler_sac
 }
 
 class Tirage {
   - nb_max_tirages:static const int;
   - nb_tirages:static int;
-  - niveau:const int -
-       nb_cartes:int - max_cartse:int -
+  - level:const int -
+       cards_number:int - max_cartse:int -
           cartes:vector<const Cartes_joaillerie *> - pioche:Pioche &
 }
 
 class Plateau {
   - nb:int -
-                  max:int - jetons:const Jeton *[] -
+                  max:int - tokens:const Token *[] -
       handler_plateau:static Handler_plateau
 }
 
-class Jeton {
+class Token {
   - id:int -
-        couleur:enum<bleu, red, vert, blanc, noir, or, perle> -
-       nb_perle:static int - max_perle:static const int - nb_or:static int -
-         max_or:static const int - nb_vert:static int -
-       max_vert:static const int - nb_rouge:static int -
-      max_rouge:static const int - nb_bleu:static int -
-       max_bleu:static const int - nb_blanc:static int -
-      max_blanc:static const int - nb_noir:static int -
+        couleur:enum<blue, red, green, white, black, or, perl> -
+       perl_number:static int - max_perle:static const int - gold_number:static int -
+         max_or:static const int - green_number:static int -
+       max_vert:static const int - red_number:static int -
+      max_rouge:static const int - blue_number:static int -
+       max_bleu:static const int - white_number:static int -
+      max_blanc:static const int - black_number:static int -
        max_noir:static const int
 }
 
@@ -33,38 +33,38 @@ class Privilege {
 }
 
 class Card {
-  - capacite:const Capacity{nullable} - points_prestige:const int {
+  - capacity:const Capacity{nullable} - prestige_points:const int {
     nullable
   }
 }
 
 class JewelryCard {
-  - cout_blanc:const int -
-          cout_bleu:const int - cout_vert:const int - cout_rouge:const int -
-          cout_noir:const int - cout_perle:const int - niveau:const int -
+  - white_cost:const int -
+          blue_cost:const int - green_cost:const int - red_cost:const int -
+          black_cost:const int - perl_cost:const int - level:const int -
        nb_couronnes:const int[0, 3] -
-      bonus_couleur:const enum<bleu, blanc, red, vert, noir, multiple> -
-       bonus_nombre:const int[0, 2]
+      color_bonus:const enum<blue, white, red, green, black, multiple> -
+       bonus_number:const int[0, 2]
 }
 
 class RoyalCard {
 }
 
 class Joueur {
-  - nom:str -
-              nb_points:int - nb_courones:int - nb_cartes_j:int -
-            nb_cartes_r:int - nb_privileges:int - max_nb_privileges:int -
+  - name:str -
+              points_number:int - crown_number:int - jewelry_cards_number:int -
+            royal_cards_number:int - privilege_number:int - max_nb_privileges:int -
           max_nb_jetons:int - max_nb_cartes_r:int - cartes_j:JewelryCard *[] -
-               cartes_r:RoyalCard *[] - jetons:Jeton[] -
+               cartes_r:RoyalCard *[] - tokens:Token[] -
              privileges:Privilege *[]
 }
 
 class Jeu {
-  - est_termine:bool - est_contre_AI:bool - qui_joue:Joueur - opponent:Joueur
+  - is_finished:bool - est_contre_AI:bool - who_plays:Joueur - opponent:Joueur
 }
 
 class Pioche {
-  - niveau:const int -
+  - level:const int -
        nb_pioches:static int - max_pioches:static const int -
            pioche:vector<const Cartes_joaillerie *>
 }
@@ -74,14 +74,14 @@ class SplendorException {
 }
   
 
-  Sac  o-- "0..*"Jeton : sont présents dans >
+  Sac  o-- "0..*"Token : sont présents dans >
   
-  Plateau o-- "0..*" Jeton : sont sur >
+  Plateau o-- "0..*" Token : sont sur >
   
   Joueur o--l "0..3" Privilege : détienir >
   Joueur o-- "0..3" JewelryCard : réserver >
   Joueur o-- "0..*" JewelryCard : posséder >
-  Joueur o-- "0..10" Jeton : posséder >
+  Joueur o-- "0..10" Token : posséder >
   Joueur o-- "0..2" RoyalCard : posséder >
   
   Pioche "1" -- "*" JewelryCard : contenir >
@@ -93,16 +93,16 @@ class SplendorException {
   Jeu *--r "1"Sac : contenir >
   Jeu *-- "67" Card : contenir >
   Jeu *-- "0..3" Privilege : contenir >
-  Jeu *-- "1..*" Jeton : contenir >
+  Jeu *-- "1..*" Token : contenir >
   JewelryCard --^ Card
   RoyalCard --^ Card
 
 
 
-  Jeton : const int get_id() const
-  Jeton : static int getNbMaxJetons()
-  Jeton : \~Jeton()
-  Jeton : Jeton(id:int, couleur:enum)
+  Token : const int get_id() const
+  Token : static int getNbMaxJetons()
+  Token : \~Token()
+  Token : Token(id:int, couleur:enum)
 
   Sac : Sac()
   Sac : \~Sac()
@@ -130,10 +130,10 @@ class SplendorException {
   Joueur : int getPrivilege()
   Joueur : void obtenirCarteRoyale() const
   
-  Card : const Capacity& getCapacite() const
+  Card : const Capacity& getCapacity() const
   Card : int getPrestige() const
   Card : \Card)
-  Card : Card(capacite : Capacity, points_prestige : int)
+  Card : Card(capacity : Capacity, prestige_points : int)
   
   JewelryCard : const int getCostWhite() const
   JewelryCard : const int getCostGreen() const
@@ -145,7 +145,7 @@ class SplendorException {
   JewelryCard : const colorBonus& getBonus() const
   JewelryCard : const int getNbBonus() const
 
-  RoyalCard : RoyalCard(capacite : Capacity, points_prestige : int)
+  RoyalCard : RoyalCard(capacity : Capacity, prestige_points : int)
   
   Jeu : Joueur& getTour() const
   Jeu : void tourSuivant()
@@ -154,12 +154,12 @@ class SplendorException {
   Plateau : \~Plateau()
   Plateau : static Plateau& get_plateau()
   Plateau : static void libere_plateau()
-  Plateau : const Jeton* get_plateau_i(i:int) const
-  Plateau : void set_plateau_i(i:int, jet: const Jeton*)
-  Plateau : const Jeton* get_droite_i(i:int) const
-  Plateau : const Jeton* get_gauche_i(i:int) const
-  Plateau : const Jeton* get_dessous_i(i:int) const
-  Plateau : const Jeton* get_dessus_i(i:int) const
+  Plateau : const Token* get_plateau_i(i:int) const
+  Plateau : void set_plateau_i(i:int, jet: const Token*)
+  Plateau : const Token* get_droite_i(i:int) const
+  Plateau : const Token* get_gauche_i(i:int) const
+  Plateau : const Token* get_dessous_i(i:int) const
+  Plateau : const Token* get_dessus_i(i:int) const
   Plateau : void printTab() const
   
   Tirage : Tirage(niv : int, max : int, p : Pioche&)
@@ -168,7 +168,7 @@ class SplendorException {
   Tirage : Pioche& getPioche() const
   Tirage : vector<const JewelryCard*> getTirage() const
   Tirage : const int getNiveau() const
-  Tirage : const int getNbCartes() const
+  Tirage : const int getCardsNumber() const
 
   Pioche : Pioche(niv : int)
   Pioche : \~Pioche()
@@ -179,5 +179,5 @@ class SplendorException {
   Pioche : static void remplirPioche(p1 : Pioche*, p2 : Pioche*, p3 : Pioche*, cartes : vector<const JewelryCard*>&)
 
   SplendorException : SplendorException(str const std::string&)
-  SplendorException : std::string getInfos() const
+  SplendorException : std::string getInfo() const
 @enduml

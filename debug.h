@@ -5,251 +5,267 @@
 #include <iostream>
 
 void toJson() {
-  json j = Jeu::getJeu().toJson();
-  std::string s = j.dump(2);
-  std::ofstream file("../src/backup.json");
-  file << s;
+	json j = Game::getGame().toJson();
+	std::string s = j.dump(2);
+	std::ofstream file("../src/backup.json");
+	file << s;
 }
 
 void gameFromScratch() {
-  srand(static_cast<unsigned>(std::time(nullptr)));
+	srand(static_cast<unsigned>(std::time(nullptr)));
 
-  try {
-    std::ifstream file("../src/history.json");
+	try {
+		std::ifstream file("../src/history.json");
 
-    if (!file.is_open()) {
-      std::cerr << "Failed to open the JSON file." << std::endl;
-      throw SplendorException("Fichier non ouvert");
-    }
-    json hist;
-    file >> hist;
-    file.close();
-    History::getHistory().initHistory(hist);
-  } catch (SplendorException &e) {
-    cout << " Historique non ouvert " << endl;
-  }
+		if (!file.is_open()) {
+			std::cerr << "Failed to open the JSON file." << std::endl;
+			throw SplendorException("Fichier non ouvert");
+		}
+		json hist;
+		file >> hist;
+		file.close();
+		History::getHistory().initHistory(hist);
+	} catch (SplendorException &e) {
+		cout << " Historique non ouvert " << endl;
+	}
 
-  Jeu::getJeu();
-  cout << "Privilèges dans le jeu:" << endl;
+	Game::getGame();
+	cout << "Privilèges dans le game:" << endl;
 
-  Jeu::getJeu().setPlayers();
+	Game::getGame().setPlayers();
 
-  cout << "Le jeu est sur le point de commencer !\nC'est au joueur1 d'engager "
-          "la partie !"
-       << endl;
+	cout
+	    << "Le game est sur le point de commencer !\nC'est au joueur1 d'engager "
+	       "la partie !"
+	    << endl;
 
-  unsigned int from_error = 0;
+	unsigned int from_error = 0;
 
-  while (!Jeu::getJeu().isFinished()) {
+	while (!Game::getGame().isFinished()) {
 
-    if (from_error == 0) {
-      Jeu::getJeu().get_tour();
+		if (from_error == 0) {
+			Game::getGame().getPlayerRound();
 
-      cout << "Etat des joueurs : " << endl;
-      Jeu::getJeu().getCurrentPlayer().print_player();
-      cout << "Bonus blanc"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::blanc)
-           << endl;
-      cout << "Bonus vert"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::vert)
-           << endl;
-      cout << "Bonus bleu"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::bleu)
-           << endl;
-      cout << "Bonus rouge"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::red)
-           << endl;
-      cout << "Bonus noir"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::noir)
-           << endl;
-      cout << "Bonus joker"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::joker)
-           << endl;
-      cout << endl;
+			cout << "Etat des joueurs : " << endl;
+			Game::getGame().getCurrentPlayer().printPlayer();
+			cout << "Bonus white"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::white)
+			     << endl;
+			cout << "Bonus green"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::green)
+			     << endl;
+			cout << "Bonus blue"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::blue)
+			     << endl;
+			cout << "Bonus red"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::red)
+			     << endl;
+			cout << "Bonus black"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::black)
+			     << endl;
+			cout << "Bonus joker"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::joker)
+			     << endl;
+			cout << endl;
 
-      cout << "Il y a " << Sac::get_sac().get_nb_sac() << " jetons dans le sac."
-           << endl;
+			cout << "Il y a " << Bag::get().getTokenNumber()
+			     << " tokens dans le bag." << endl;
 
-      cout << "\n\nPlateau :" << endl;
-      Plateau::get_plateau().printTab();
+			cout << "\n\nPlateau :" << endl;
+			Board::getBoard().printArray();
 
-      cout << "\n\nTirage1 :" << endl;
-      cout << *Jeu::getJeu().get_tirage_1() << endl;
-      cout << "\nTirage2 :" << endl;
-      cout << *Jeu::getJeu().get_tirage_2() << endl;
-      cout << "\nTirage3 :" << endl;
-      cout << *Jeu::getJeu().get_tirage_3() << endl;
+			cout << "\n\nTirage1 :" << endl;
+			cout << *Game::getGame().getFirstDraw() << endl;
+			cout << "\nTirage2 :" << endl;
+			cout << *Game::getGame().getSecondDraw() << endl;
+			cout << "\nTirage3 :" << endl;
+			cout << *Game::getGame().getThirdDraw() << endl;
 
-      cout << "c'est à " << Jeu::getJeu().get_tour().getName() << " de jouer ! "
-           << endl;
+			cout << "c'est à " << Game::getGame().getPlayerRound().getName()
+			     << " de jouer ! " << endl;
 
-      try {
-        toJson();
-      } catch (SplendorException &e) {
-        cout << e.getInfos() << endl;
-      }
-    }
-    try {
+			try {
+				toJson();
+			} catch (SplendorException &e) {
+				cout << e.getInfo() << endl;
+			}
+		}
+		try {
 
-      Jeu::getJeu().getCurrentPlayer().choice();
-      Jeu::getJeu().getCurrentPlayer().verifJetons();
-      if (Jeu::getJeu().getCurrentPlayer().royaleCardEligibility() == 1) {
-        Jeu::getJeu().getCurrentPlayer().selectionRoyalCard();
-      }
-      Jeu::getJeu().tour_suivant();
-      from_error = 0;
+			Game::getGame().getCurrentPlayer().choice();
+			Game::getGame().getCurrentPlayer().tokenVerification();
+			if (Game::getGame().getCurrentPlayer().royalCardEligibility() == 1) {
+				Game::getGame().getCurrentPlayer().royalCardSelection();
+			}
+			Game::getGame().nextRound();
+			from_error = 0;
 
-    } catch (SplendorException &e) {
-      from_error = 1;
-      cout << "============= ACTION NON AUTORISÉE =================" << endl;
-      cout << e.getInfos() << endl;
-    }
-  }
+		} catch (SplendorException &e) {
+			from_error = 1;
+			cout << "============= ACTION NON AUTORISÉE ================="
+			     << endl;
+			cout << e.getInfo() << endl;
+		}
+	}
 
-  cout << "=================== Partie terminée ===================" << endl;
-  cout << "Nombre de manches : " << Jeu::getJeu().getManche() << endl;
-  cout << "Stats du gagnant:" << endl;
-  Jeu::getJeu().getCurrentPlayer().print_player();
-  // attention si won != 0 alors il a gagné sinon non
-  Jeu::getJeu().getCurrentPlayer().game_ended(1);
-  Jeu::getJeu().getOpponent().game_ended(0);
+	cout << "=================== Partie terminée ===================" << endl;
+	cout << "Nombre de manches : " << Game::getGame().getRoundCount() << endl;
+	cout << "Stats du winner:" << endl;
+	Game::getGame().getCurrentPlayer().printPlayer();
+	// attention si won != 0 alors il a gagné sinon non
+	Game::getGame().getCurrentPlayer().gameEnded(1);
+	Game::getGame().getOpponent().gameEnded(0);
 
-  try {
-    Hist();
-    toJson();
-  } catch (SplendorException &e) {
-    cout << e.getInfos() << endl;
-  }
+	try {
+		Hist();
+		toJson();
+	} catch (SplendorException &e) {
+		cout << e.getInfo() << endl;
+	}
 
-  Jeu::libereJeu();
+	Game::free();
 }
 
 void gameFromJson() {
 
-  try {
-    std::ifstream file("../src/history.json");
+	try {
+		std::ifstream file("../src/history.json");
 
-    if (!file.is_open()) {
-      std::cerr << "Failed to open the JSON file." << std::endl;
-      throw SplendorException("Fichier non ouvert");
-    }
-    json hist;
-    file >> hist;
-    file.close();
-    History::getHistory().initHistory(hist);
-  } catch (SplendorException &e) {
-    cout << " Historique non ouvert " << endl;
-  }
+		if (!file.is_open()) {
+			std::cerr << "Failed to open the JSON file." << std::endl;
+			throw SplendorException("Fichier non ouvert");
+		}
+		json hist;
+		file >> hist;
+		file.close();
+		History::getHistory().initHistory(hist);
+	} catch (SplendorException &e) {
+		cout << " Historique non ouvert " << endl;
+	}
 
-  try {
-    std::ifstream file("../src/backup.json");
+	try {
+		std::ifstream file("../src/backup.json");
 
-    if (!file.is_open()) {
-      std::cerr << "Failed to open the JSON file." << std::endl;
-      throw SplendorException("Fichier non ouvert");
-    }
+		if (!file.is_open()) {
+			std::cerr << "Failed to open the JSON file." << std::endl;
+			throw SplendorException("Fichier non ouvert");
+		}
 
-    json data;
-    file >> data;
-    file.close();
+		json data;
+		file >> data;
+		file.close();
 
-    // si maximum de cartes atteint alors cartes générées en trop.
-    // mauvaise gestion des cartes !
+		// si maximum de cards atteint alors cards générées en trop.
+		// mauvaise gestion des cards !
 
-    if (data["est_termine"]) {
-      cout << "vous ne pouvez pas reprendre une partie terminée !" << endl;
-      return;
-    }
+		if (data["is_finished"]) {
+			cout << "vous ne pouvez pas reprendre une partie terminée !"
+			     << endl;
+			return;
+		}
 
-    Jeu::getJeu(data);
+		Game::getGame(data);
 
-  } catch (SplendorException &e) {
-    cout << e.getInfos() << endl;
-  }
+	} catch (SplendorException &e) {
+		cout << e.getInfo() << endl;
+	}
 
-  unsigned int from_error = 0;
+	unsigned int from_error = 0;
 
-  while (!Jeu::getJeu().isFinished()) {
+	while (!Game::getGame().isFinished()) {
 
-    if (from_error == 0) {
-      Jeu::getJeu().get_tour();
+		if (from_error == 0) {
+			Game::getGame().getPlayerRound();
 
-      cout << "Etat des joueurs : " << endl;
-      Jeu::getJeu().getCurrentPlayer().print_player();
-      cout << "Bonus blanc"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::blanc)
-           << endl;
-      cout << "Bonus vert"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::vert)
-           << endl;
-      cout << "Bonus bleu"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::bleu)
-           << endl;
-      cout << "Bonus rouge"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::red)
-           << endl;
-      cout << "Bonus noir"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::noir)
-           << endl;
-      cout << "Bonus joker"
-           << Jeu::getJeu().getCurrentPlayer().calculateBonus(colorBonus::joker)
-           << endl;
-      cout << endl;
+			cout << "Etat des joueurs : " << endl;
+			Game::getGame().getCurrentPlayer().printPlayer();
+			cout << "Bonus white"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::white)
+			     << endl;
+			cout << "Bonus green"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::green)
+			     << endl;
+			cout << "Bonus blue"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::blue)
+			     << endl;
+			cout << "Bonus red"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::red)
+			     << endl;
+			cout << "Bonus black"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::black)
+			     << endl;
+			cout << "Bonus joker"
+			     << Game::getGame().getCurrentPlayer().calculateBonus(
+			            colorBonus::joker)
+			     << endl;
+			cout << endl;
 
-      cout << "Il y a " << Sac::get_sac().get_nb_sac() << " jetons dans le sac."
-           << endl;
+			cout << "Il y a " << Bag::get().getTokenNumber()
+			     << " tokens dans le bag." << endl;
 
-      cout << "\n\nPlateau :" << endl;
-      Plateau::get_plateau().printTab();
+			cout << "\n\nPlateau :" << endl;
+			Board::getBoard().printArray();
 
-      cout << "\n\nTirage1 :" << endl;
-      cout << *Jeu::getJeu().get_tirage_1() << endl;
-      cout << "\nTirage2 :" << endl;
-      cout << *Jeu::getJeu().get_tirage_2() << endl;
-      cout << "\nTirage3 :" << endl;
-      cout << *Jeu::getJeu().get_tirage_3() << endl;
+			cout << "\n\nTirage1 :" << endl;
+			cout << *Game::getGame().getFirstDraw() << endl;
+			cout << "\nTirage2 :" << endl;
+			cout << *Game::getGame().getSecondDraw() << endl;
+			cout << "\nTirage3 :" << endl;
+			cout << *Game::getGame().getThirdDraw() << endl;
 
-      cout << "c'est à " << Jeu::getJeu().get_tour().getName() << " de jouer ! "
-           << endl;
+			cout << "c'est à " << Game::getGame().getPlayerRound().getName()
+			     << " de jouer ! " << endl;
 
-      try {
-        toJson();
-      } catch (SplendorException &e) {
-        cout << e.getInfos() << endl;
-      }
-    }
-    try {
+			try {
+				toJson();
+			} catch (SplendorException &e) {
+				cout << e.getInfo() << endl;
+			}
+		}
+		try {
 
-      Jeu::getJeu().getCurrentPlayer().choice();
-      Jeu::getJeu().getCurrentPlayer().verifJetons();
-      if (Jeu::getJeu().getCurrentPlayer().royaleCardEligibility() == 1) {
-        Jeu::getJeu().getCurrentPlayer().selectionRoyalCard();
-      }
-      Jeu::getJeu().tour_suivant();
-      from_error = 0;
+			Game::getGame().getCurrentPlayer().choice();
+			Game::getGame().getCurrentPlayer().tokenVerification();
+			if (Game::getGame().getCurrentPlayer().royalCardEligibility() == 1) {
+				Game::getGame().getCurrentPlayer().royalCardSelection();
+			}
+			Game::getGame().nextRound();
+			from_error = 0;
 
-    } catch (SplendorException &e) {
-      from_error = 1;
-      cout << "============= ACTION NON AUTORISÉE =================" << endl;
-      cout << e.getInfos() << endl;
-    }
-  }
+		} catch (SplendorException &e) {
+			from_error = 1;
+			cout << "============= ACTION NON AUTORISÉE ================="
+			     << endl;
+			cout << e.getInfo() << endl;
+		}
+	}
 
-  cout << "=================== Partie terminée ===================" << endl;
-  cout << "Nombre de manches : " << Jeu::getJeu().getManche() << endl;
-  cout << "Stats du gagnant:" << endl;
-  Jeu::getJeu().getCurrentPlayer().print_player();
-  Jeu::getJeu().getCurrentPlayer().game_ended(1);
-  Jeu::getJeu().getOpponent().game_ended(0);
+	cout << "=================== Partie terminée ===================" << endl;
+	cout << "Nombre de manches : " << Game::getGame().getRoundCount() << endl;
+	cout << "Stats du winner:" << endl;
+	Game::getGame().getCurrentPlayer().printPlayer();
+	Game::getGame().getCurrentPlayer().gameEnded(1);
+	Game::getGame().getOpponent().gameEnded(0);
 
-  try {
-    Hist();
-    toJson();
-  } catch (SplendorException &e) {
-    cout << e.getInfos() << endl;
-  }
+	try {
+		Hist();
+		toJson();
+	} catch (SplendorException &e) {
+		cout << e.getInfo() << endl;
+	}
 
-  Jeu::libereJeu();
+	Game::free();
 }
 
 #endif // LO21_SPLENDOR_DUEL_MAIN_H

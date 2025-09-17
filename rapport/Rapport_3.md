@@ -2,7 +2,7 @@
 
 ## LO21: Projet Splendor Duel
 
-Petri Gaspard, Chappuis Leopold, Fouinat Quentin, Ghitu Alexandru (Co-Responsable), Vert Aubin (Co-Responsable)
+Petri Gaspard, Chappuis Leopold, Fouinat Quentin, Ghitu Alexandru (Co-Responsable), Green Aubin (Co-Responsable)
 
 ## Introduction
 
