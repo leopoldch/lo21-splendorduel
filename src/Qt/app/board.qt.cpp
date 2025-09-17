@@ -1,6 +1,6 @@
-#include "qt_plateau.h"
-#include "mainwindow.h"
-#include "qt_vue_jeton.h"
+#include "board.qt.h"
+#include "main_window.qt.h"
+#include "token_view.qt.h"
 
 Qt_Plateau::Handler Qt_Plateau::handler;
 
@@ -62,7 +62,7 @@ Qt_Plateau::Qt_Plateau(QWidget *parent) : QWidget(parent) {
 void Qt_Plateau::paintEvent(QPaintEvent *event) {
 	QPainter painter(this);
 
-	QPixmap backgroundPixmap("../src/Reste_detoure/Board.png");
+	QPixmap backgroundPixmap("../src/assets/rest_detoured/Board.png");
 	QPixmap stretchedPixmap =
 	    backgroundPixmap.scaled(371 * 0.75, 446 * 0.75, Qt::IgnoreAspectRatio,
 	                            Qt::SmoothTransformation);

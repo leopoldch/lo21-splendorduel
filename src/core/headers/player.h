@@ -250,7 +250,7 @@ class StrategyPlayer { // Utilisation Design Pattern Strategy
 
 	vector<const Privilege *> &get_privilege() { return privileges; }
 
-	// méthode utilitaires aux classes filles
+	// méthode utilitaires aux core filles
 
 	int calculateBonus(enum colorBonus bonus);
 	int TokenAmount(const Color &couleur) const;

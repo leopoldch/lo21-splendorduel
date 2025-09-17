@@ -9,7 +9,7 @@ using namespace std;
 
 class Token {
 	const int id;
-	const Color couleur;
+	const Color color;
 
 	static int perl_number;
 	static const int max_perl = 2;
@@ -30,7 +30,7 @@ class Token {
 
   public:
 	Token(int id, const Color &coul, std::string visual)
-	    : id(id), couleur(coul), visual(visual) {
+	    : id(id), color(coul), visual(visual) {
 
 		if ((id < 1) || (id > Token::getMaxTokenNumber())) {
 			throw SplendorException("Mauvais id de tokens!");
@@ -107,7 +107,7 @@ class Token {
 		}
 	}
 	~Token() {
-		switch (couleur) {
+		switch (color) {
 		case Color::red: {
 			if (red_number > 0) {
 				red_number--;
@@ -175,7 +175,7 @@ class Token {
 
 	const std::string getVisual() const { return visual; }
 
-	const Color &getColor() const { return couleur; }
+	const Color &getColor() const { return color; }
 	const int getId() const { return id; }
 	static int getMaxTokenNumber() {
 		return max_blue + max_white + max_gold + max_black + max_perl +

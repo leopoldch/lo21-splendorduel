@@ -29,44 +29,44 @@ Game::Game() {
 
 	for (int i = 0; i < 4; i++) {
 		auto *temp =
-		    new Token(j++, Color::blue, "../src/Reste_detoure/Jeton_bleu.png");
+		    new Token(j++, Color::blue, "../src/assets/rest_detoured/Jeton_bleu.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
 
 	for (int i = 0; i < 4; i++) {
 		auto *temp =
-		    new Token(j++, Color::red, "../src/Reste_detoure/Jeton_rouge.png");
+		    new Token(j++, Color::red, "../src/assets/rest_detoured/Jeton_rouge.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
 	for (int i = 0; i < 4; i++) {
 		auto *temp =
-		    new Token(j++, Color::green, "../src/Reste_detoure/Jeton_vert.png");
+		    new Token(j++, Color::green, "../src/assets/rest_detoured/Jeton_vert.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
 	for (int i = 0; i < 4; i++) {
 		auto *temp = new Token(j++, Color::white,
-		                       "../src/Reste_detoure/Jeton_blanc.png");
+		                       "../src/assets/rest_detoured/Jeton_blanc.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
 	for (int i = 0; i < 4; i++) {
 		auto *temp =
-		    new Token(j++, Color::black, "../src/Reste_detoure/Jeton_noir.png");
+		    new Token(j++, Color::black, "../src/assets/rest_detoured/Jeton_noir.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
 	for (int i = 0; i < 2; i++) {
 		auto *temp =
-		    new Token(j++, Color::perl, "../src/Reste_detoure/Jeton_perle.png");
+		    new Token(j++, Color::perl, "../src/assets/rest_detoured/Jeton_perle.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}
 	for (int i = 0; i < 3; i++) {
 		auto *temp =
-		    new Token(j++, Color::gold, "../src/Reste_detoure/Jeton_or.png");
+		    new Token(j++, Color::gold, "../src/assets/rest_detoured/Jeton_or.png");
 		tokens.push_back(temp);
 		Bag::get().insertToken(temp);
 	}

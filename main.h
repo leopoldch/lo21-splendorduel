@@ -4,8 +4,8 @@
 #ifndef LO21_SPLENDOR_DUEL_MAIN_H
 #define LO21_SPLENDOR_DUEL_MAIN_H
 
-#include "Qt_cmake/mainwindow.h"
-#include "classes/history.h"
+#include "main_window.qt.h"
+#include "history.h"
 #include <QApplication>
 #include <QThread>
 #include <iostream>

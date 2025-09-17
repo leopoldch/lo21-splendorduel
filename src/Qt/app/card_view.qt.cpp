@@ -1,4 +1,4 @@
-#include "qt_vue_carte.h"
+#include "card_view.qt.h"
 #include <QDebug>
 
 Qt_carte::Qt_carte(QWidget *parent)

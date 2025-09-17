@@ -20,54 +20,27 @@ if(CLANG_FORMAT)
     )
 endif()
 
+file(GLOB_RECURSE PROJECT_SOURCES CONFIGURE_DEPENDS
+     "${CMAKE_SOURCE_DIR}/src/*.cpp"
+     "${CMAKE_SOURCE_DIR}/src/*.h")
+
+list(FILTER PROJECT_SOURCES EXCLUDE REGEX ".*/src/Qt/app/main_old\\.cpp$")
+
 add_executable(lo21-splendor-duel
+    main.cpp
+    main.h
+    ${PROJECT_SOURCES}
+)
 
-        main.h
-        main.cpp
+target_include_directories(lo21-splendor-duel PRIVATE
+    "${CMAKE_SOURCE_DIR}/src"
+    "${CMAKE_SOURCE_DIR}/src/Qt/headers"
+    "${CMAKE_SOURCE_DIR}/src/core/headers"
+)
 
-        classes/card.cpp
-        classes/card.h
-        classes/Exception.h
-        classes/tokens.cpp
-        classes/tokens.h
-        classes/game.cpp
-        classes/game.h
-        classes/player.cpp
-        classes/player.h
-        classes/deck.cpp
-        classes/deck.h
-        classes/board.cpp
-        classes/board.h
-        classes/privilege.cpp
-        classes/privilege.h
-        classes/bag.cpp
-        classes/bag.h
-        classes/draw.cpp
-        classes/draw.h
-        classes/json.cpp
-        classes/json.h
-        classes/history.cpp
-        classes/history.h
-
-        Qt_cmake/qt_vue_jeton.h
-        Qt_cmake/qt_vue_carte.h
-        Qt_cmake/qt_vue_carte.cpp
-        Qt_cmake/qt_vue_jeton.cpp
-        Qt_cmake/popup_text.h
-        Qt_cmake/popup_text.cpp
-        Qt_cmake/qt_choicepopup.h
-        Qt_cmake/qt_popup_yesno.h
-        Qt_cmake/qt_popup_info.h
-        Qt_cmake/qt_popup_tirageoupioche.h
-        Qt_cmake/qt_popup_joker.cpp
-        Qt_cmake/playerinputdialog.cpp
-        Qt_cmake/qt_popup_couleur.cpp
-        Qt_cmake/mainwindow.cpp
-        Qt_cmake/mainwindow.h
-        Qt_cmake/qt_plateau.cpp
-        Qt_cmake/qt_plateau.h
-        Qt_cmake/qt_tirages.cpp
-        Qt_cmake/qt_tirages.h
+target_include_directories(lo21-splendor-duel PRIVATE
+    ${CMAKE_SOURCE_DIR}/src/Qt/headers
+    ${CMAKE_SOURCE_DIR}/src/core/headers
 )
 
 include(FetchContent)

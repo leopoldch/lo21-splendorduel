@@ -1,6 +1,6 @@
-#include "qt_popup_joker.h".h "
-#include "../classes/game.h"
-#include "mainwindow.h"
+#include "joker_popup.qt.h"
+#include "game.h"
+#include "main_window.qt.h"
 #include <QLabel>
 #include <string>
 

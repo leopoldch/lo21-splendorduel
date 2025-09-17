@@ -1,7 +1,7 @@
 #ifndef QT_VUE_CARTE_H
 #define QT_VUE_CARTE_H
 
-#include "../classes/card.h"
+#include "card.h"
 #include <QBrush>
 #include <QPainter>
 #include <QPen>

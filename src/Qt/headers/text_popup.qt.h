@@ -1,7 +1,7 @@
 #ifndef POPUP_TEXT_H
 #define POPUP_TEXT_H
 
-#include "../classes/game.h"
+#include "game.h"
 #include <QComboBox>
 #include <QDialog>
 #include <QLineEdit>

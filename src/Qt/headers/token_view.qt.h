@@ -1,7 +1,7 @@
 #ifndef QT_VUE_JETON_H
 #define QT_VUE_JETON_H
 
-#include "../classes/tokens.h"
+#include "tokens.h"
 #include <QBrush>
 #include <QPainter>
 #include <QPen>

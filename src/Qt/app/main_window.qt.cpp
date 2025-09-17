@@ -1,7 +1,7 @@
-#include "mainwindow.h"
-#include "../classes/history.h"
-#include "qt_popup_couleur.h"
-#include "qt_popup_joker.h"
+#include "main_window.qt.h"
+#include "history.h"
+#include "color_popup.qt.h"
+#include "joker_popup.qt.h"
 #include <QDialog>
 #include <QScrollArea>
 #include <math.h>
@@ -165,7 +165,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// Conditions de victoire et son image
 	QLabel *conditionsVictoire = new QLabel(this);
-	QPixmap originalPixmap("../src/Reste_detoure/Conditions_victoire.png");
+	QPixmap originalPixmap("../src/assets/rest_detoured/Conditions_victoire.png");
 	QPixmap scaledPixmap = originalPixmap.scaled(
 	    397 / 3, 330 / 3, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	conditionsVictoire->setPixmap(scaledPixmap);
@@ -545,7 +545,7 @@ void MainWindow::updateDraws() {
 	if (tirages->getDeck1() != nullptr) {
 		if (!Game::getGame().getDeck(1)->isEmpty())
 			tirages->getDeck1()->updateAppearance(
-			    "../src/Reste_detoure/Pioche_niveau_1.png");
+			    "../src/assets/rest_detoured/Pioche_niveau_1.png");
 		else {
 			tirages->getDeck1()->setIcon(QIcon());
 			tirages->getDeck1()->setIconSize(this->size());
@@ -555,7 +555,7 @@ void MainWindow::updateDraws() {
 	if (tirages->getDeck2() != nullptr) {
 		if (!Game::getGame().getDeck(2)->isEmpty())
 			tirages->getDeck2()->updateAppearance(
-			    "../src/Reste_detoure/Pioche_niveau_2.png");
+			    "../src/assets/rest_detoured/Pioche_niveau_2.png");
 		else {
 			tirages->getDeck2()->setIcon(QIcon());
 			tirages->getDeck2()->setIconSize(this->size());
@@ -565,7 +565,7 @@ void MainWindow::updateDraws() {
 	if (tirages->getDeck3() != nullptr) {
 		if (!Game::getGame().getDeck(3)->isEmpty())
 			tirages->getDeck3()->updateAppearance(
-			    "../src/Reste_detoure/Pioche_niveau_3.png");
+			    "../src/assets/rest_detoured/Pioche_niveau_3.png");
 		else {
 			tirages->getDeck3()->setIcon(QIcon());
 			tirages->getDeck3()->setIconSize(this->size());
@@ -679,7 +679,7 @@ void MainWindow::updateBoard() {
 void MainWindow::updatePrivileges() {
 	int privilege_number = Game::getGame().getPrivilegeNumber();
 	QIcon icon(
-	    QPixmap(QString::fromStdString("../src/Reste_detoure/Privilege.png")));
+	    QPixmap(QString::fromStdString("../src/assets/rest_detoured/Privilege.png")));
 	switch (privilege_number) {
 	case 0:
 		board->getPrivilege1()->setIcon(QIcon());

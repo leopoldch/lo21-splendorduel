@@ -1,5 +1,5 @@
 #include "player.h"
-#include "../Qt_cmake/mainwindow.h"
+#include "main_window.qt.h"
 #include "card.h"
 #include "game.h"
 

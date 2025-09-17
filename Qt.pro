@@ -5,30 +5,30 @@ greaterThan(QT_MAJOR_VERSION, 4) : QT += widgets
 
 SOURCES += \
 
-    classes/card.cpp \
-    classes/tokens.cpp \
-    classes/game.cpp \
-    classes/player.cpp \
-    classes/deck.cpp \
-    classes/board.cpp \
-    classes/privilege.cpp \
-    classes/bag.cpp \
-    classes/draw.cpp \
-    Qt_cmake/main_old.cpp \
-    Qt_cmake/mainwindow.cpp \
+    core/card.cpp \
+    core/tokens.cpp \
+    core/game.cpp \
+    core/player.cpp \
+    core/deck.cpp \
+    core/board.cpp \
+    core/privilege.cpp \
+    core/bag.cpp \
+    core/draw.cpp \
+    Qt/main_old.cpp \
+    Qt/main_window.qt.cpp \
 
 
 HEADERS += \
 
-    classes/Exception.h \
-    classes/card.h \
-    classes/tokens.h \
-    classes/game.h \
-    classes/player.h \
-    classes/deck.h \
-    classes/board.h \
-    classes/privilege.h \
-    classes/bag.h \
-    classes/draw.h \
+    core/Exception.h \
+    core/card.h \
+    core/tokens.h \
+    core/game.h \
+    core/player.h \
+    core/deck.h \
+    core/board.h \
+    core/privilege.h \
+    core/bag.h \
+    core/draw.h \
     main.h \
 

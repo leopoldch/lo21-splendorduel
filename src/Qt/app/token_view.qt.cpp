@@ -1,5 +1,5 @@
-#include "qt_vue_jeton.h"
-#include "mainwindow.h"
+#include "token_view.qt.h"
+#include "main_window.qt.h"
 #include <QCoreApplication>
 
 Qt_jeton::Qt_jeton(QWidget *parent)

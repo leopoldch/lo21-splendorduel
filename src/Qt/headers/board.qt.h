@@ -1,7 +1,7 @@
 #ifndef QT_PLATEAU_H
 #define QT_PLATEAU_H
 
-#include "qt_vue_jeton.h"
+#include "token_view.qt.h"
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>

@@ -1,8 +1,8 @@
 #ifndef QT_POPUP_JOKER_H
 #define QT_POPUP_JOKER_H
 
-#include "../classes/card.h"
-#include "../classes/game.h"
+#include "card.h"
+#include "game.h"
 #include <QComboBox>
 #include <QDialog>
 #include <QLineEdit>

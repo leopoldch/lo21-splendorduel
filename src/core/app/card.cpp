@@ -195,7 +195,7 @@ vector<const RoyalCard *> initRoyalCards() {
 	for (const auto &royal_card_data : data["royal_cards"]) {
 
 		std::string image = royal_card_data["link"];
-		std::string visual = "../src/Cartes_detourees/" + image;
+		std::string visual = "../src/assets/cards_detoured/" + image;
 
 		if (!royal_card_data["capacity"].is_null()) {
 			RoyalCard *instance = new RoyalCard(
@@ -225,7 +225,7 @@ vector<const JewelryCard *> initJewelryCards() {
 	for (const auto &jewelry_card_data : data["jewelry_cards"]) {
 
 		std::string image = jewelry_card_data["link"];
-		std::string visual = "../src/Cartes_detourees/" + image;
+		std::string visual = "../src/assets/cards_detoured/" + image;
 
 		if (jewelry_card_data["capacity"].is_null() &&
 		    jewelry_card_data["color_bonus"].is_null()) {

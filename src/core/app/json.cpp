@@ -71,7 +71,6 @@ vector<const RoyalCard *> royalCardsFromJson(json data) {
 	std::vector<const RoyalCard *> royal_cards_instances;
 
 	for (const auto &royal_card_data : data) {
-
 		if (royal_card_data["capacity"] != NULL) {
 			RoyalCard *instance = new RoyalCard(
 			    royal_card_data["prestige_points"],
@@ -115,21 +114,21 @@ vector<const Privilege *> privilegesFromJson(json data, unsigned int nb) {
 }
 
 Deck &deckFromJson(json data) {
-	Deck *p = new Deck(data["level"]);
-	p->setDeck(jewelryCardFromJson(data["jewelry_cards"]));
-	return *p;
+	Deck *deck = new Deck(data["level"]);
+	deck->setDeck(jewelryCardFromJson(data["jewelry_cards"]));
+	return *deck;
 }
 
-Draw &drawFromJson(json data, Deck &p) {
-	Draw *t = new Draw(data["level"], data["max_cards"], p);
-	t->setNbCartes(data["cards_number"]);
-	t->setTirage(jewelryCardFromJson(data["jewelry_cards"]));
-	return *t;
+Draw &drawFromJson(json data, Deck &deck) {
+	Draw *draw = new Draw(data["level"], data["max_cards"], deck);
+	draw->setNbCartes(data["cards_number"]);
+	draw->setTirage(jewelryCardFromJson(data["jewelry_cards"]));
+	return *draw;
 }
 
 void boardFromJson(json data) {
-	Board &p = Board::getBoard();
-	p.setNb(data["nb"]);
+	Board &deck = Board::getBoard();
+	deck.setNb(data["nb"]);
 	vector<const Token *> tokens;
 	tokens = tokensFromJson(data["tokens"]);
 
@@ -141,22 +140,22 @@ void boardFromJson(json data) {
 	for (int i = number_jetons_saved; i < data["nb"]; ++i) {
 		tokens.push_back(nullptr);
 	}
-	p.setJetons(tokens);
-	p.setCurrentNb(data["current_nb"]);
+	deck.setJetons(tokens);
+	deck.setCurrentNb(data["current_nb"]);
 }
 
 void bagFromJson(json data) {
-	if (data["nb"] != 0 && !data["tokens"].is_null()) {
-		Bag &s = Bag::get();
+	if (data["tokens_in_bag_number"] != 0 && !data["tokens"].is_null()) {
+		Bag &bag = Bag::get();
 		vector<const Token *> tokens;
 
 		tokens = tokensFromJson(data["tokens"]);
 
 		for (int i = 0; i < tokens.size(); ++i) {
-			s.insertToken(tokens[i]);
+			bag.insertToken(tokens[i]);
 		}
 
-		s.setAmountofToken(data["nb"]); // normalement pas besoin de reset nb
+		bag.setAmountofToken(data["nb"]); // normalement pas besoin de reset nb
 		                                // mais on sait jamais
 	}
 }

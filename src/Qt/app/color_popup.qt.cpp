@@ -1,6 +1,6 @@
-#include "qt_popup_couleur.h"
-#include "../classes/game.h"
-#include "mainwindow.h"
+#include "color_popup.qt.h"
+#include "game.h"
+#include "main_window.qt.h"
 #include <QLabel>
 #include <string>
 

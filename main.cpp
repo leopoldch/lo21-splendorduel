@@ -1,9 +1,9 @@
 #include "main.h"
-#include "Qt_cmake/mainwindow.h"
-#include "Qt_cmake/qt_popup_info.h"
-#include "Qt_cmake/qt_popup_yesno.h"
-#include "classes/game.h"
-#include "classes/player.h"
+#include "main_window.qt.h"
+#include "info_popup.qt.h"
+#include "yesno_popup.qt.h"
+#include "game.h"
+#include "player.h"
 #include <QApplication>
 #include <QMainWindow>
 #include <QString>
@@ -40,7 +40,6 @@ int main(int argc, char *argv[]) {
 				gameFromScratch(argc, argv);
 			}
 		} catch (SplendorException &e) {
-			cout << e.getInfo() << endl;
 			MainWindow::getMainWindow().triggerInfo(e.getInfo());
 		}
 	}

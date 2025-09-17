@@ -1,4 +1,4 @@
-#include "playerinputdialog.h"
+#include "player_input_dialog.qt.h"
 
 PlayerInputDialog::PlayerInputDialog(QWidget *parent) : QDialog(parent) {}
 

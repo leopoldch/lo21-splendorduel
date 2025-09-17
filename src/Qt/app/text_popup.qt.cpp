@@ -1,6 +1,6 @@
-#include "popup_text.h"
-#include "../classes/game.h"
-#include "mainwindow.h"
+#include "text_popup.qt.h"
+#include "game.h"
+#include "main_window.qt.h"
 #include <QLabel>
 
 InputPopup::InputPopup(QWidget *parent) : QDialog(parent) {

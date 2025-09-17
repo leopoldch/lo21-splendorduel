@@ -1,7 +1,7 @@
 #ifndef QT_TIRAGES_H
 #define QT_TIRAGES_H
 
-#include "qt_vue_carte.h"
+#include "card_view.qt.h"
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QVector>

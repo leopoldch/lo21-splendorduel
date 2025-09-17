@@ -1,6 +1,6 @@
-#include "qt_tirages.h"
-#include "mainwindow.h"
-#include "qt_vue_carte.h"
+#include "draws.qt.h"
+#include "main_window.qt.h"
+#include "card_view.qt.h"
 #include <QPixmap>
 #include <QVBoxLayout>
 

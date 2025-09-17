@@ -1,10 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "../classes/tokens.h"
-#include "qt_choicepopup.h"
-#include "qt_plateau.h"
-#include "qt_tirages.h"
+#include "tokens.h"
+#include "choice_popup.qt.h"
+#include "board.qt.h"
+#include "draws.qt.h"
 #include <QApplication>
 #include <QDesktopServices>
 #include <QDialog>
@@ -16,12 +16,12 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
-#include "../classes/history.h"
-#include "popup_text.h"
-#include "qt_popup_info.h"
-#include "qt_popup_tirageoupioche.h"
-#include "qt_popup_yesno.h"
-#include "qt_vue_jeton.h"
+#include "history.h"
+#include "text_popup.qt.h"
+#include "info_popup.qt.h"
+#include "deck_or_draw_popup.qt.h"
+#include "yesno_popup.qt.h"
+#include "token_view.qt.h"
 
 #define RIEN "../src/rien.png"
 

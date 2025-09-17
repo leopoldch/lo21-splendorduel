@@ -9,6 +9,7 @@ using namespace std;
 class Bag {
 	int tokens_in_bag_number;
 	vector<const Token *> tokens;
+
 	struct BagHandler {
 		Bag *instance = nullptr;
 		~BagHandler() {
@@ -16,9 +17,11 @@ class Bag {
 			instance = nullptr;
 		}
 	};
+
 	static BagHandler bag_handler;
+	
 	Bag() = default;
-	~Bag() = default; // car agrégation !
+	~Bag() = default; // aggregation
 
 	Bag &operator=(const Bag &s) = delete;
 	Bag(const Bag &s) = delete;
@@ -26,23 +29,26 @@ class Bag {
 	void initBag();
 
   public:
-	json toJson() const {
-		json j;
-		// This nb needs to change
-		j["nb"] = getTokenNumber();
-		j["tokens"] = {};
-		for (int i = 0; i < tokens.size(); ++i) {
-			j["tokens"].push_back(tokens[i]->toJson());
-		}
 
-		return j;
-	}
-
-	void printBag();
+  	void printBag();
 	static Bag &get();
 	static void free();
+	void insertToken(const Token *jet);
 
-	const int getTokenNumber() const { return tokens_in_bag_number; }
+	json toJson() const {
+		json data_to_be_saved;
+		data_to_be_saved["tokens_in_bag_number"] = getTokenNumber();
+		data_to_be_saved["tokens"] = {};
+		for (int i = 0; i < tokens.size(); ++i) {
+			data_to_be_saved["tokens"].push_back(tokens[i]->toJson());
+		}
+
+		return data_to_be_saved;
+	}
+
+	const int getTokenNumber() const { 
+		return tokens_in_bag_number; 
+	}
 
 	void setAmountofToken(int nbr) {
 		if (tokens_in_bag_number < 0) {
@@ -51,9 +57,13 @@ class Bag {
 		}
 		tokens_in_bag_number = nbr;
 	}
-	const Token *getTokenByIndex(int i) const { return tokens[i]; }
-	void placeTokenInBagByIndex(int i, Token *jet) { tokens[i] = jet; }
-	void insertToken(const Token *jet);
+	const Token *getTokenByIndex(int i) const { 
+		return tokens[i]; 
+	}
+
+	void placeTokenInBagByIndex(int i, Token *jet) { 
+		tokens[i] = jet;
+	}
 
 	void takeTokenByIndex(int i) {
 		if ((i < 0) || (i >= Bag::getTokenNumber())) {
@@ -64,6 +74,7 @@ class Bag {
 		tokens.erase(tokens.begin() + i);
 		--tokens_in_bag_number;
 	}
+
 };
 
 #endif // LO21_SPLENDOR_DUEL_SAC_H
