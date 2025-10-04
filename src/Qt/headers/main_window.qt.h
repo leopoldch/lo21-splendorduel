@@ -23,7 +23,6 @@
 #include "token_view.qt.h"
 #include "yesno_popup.qt.h"
 
-#define RIEN "../src/rien.png"
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT

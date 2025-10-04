@@ -17,24 +17,29 @@ void toJson() {
 	file << s;
 }
 
-void gameFromScratch(int argc, char *argv[]) {
-
-	srand(static_cast<unsigned>(std::time(nullptr)));
-
+void tryOpenHistoryFile(){
+	const std::string PATH = "../src/history.json";
 	try {
-		std::ifstream file("../src/history.json");
+		std::ifstream file(PATH);
 
 		if (!file.is_open()) {
 			std::cerr << "Failed to open the JSON file." << std::endl;
-			throw SplendorException("Fichier non ouvert");
+			throw SplendorException("Could not open history.json");
 		}
 		json hist;
 		file >> hist;
 		file.close();
 		History::getHistory().initHistory(hist);
 	} catch (SplendorException &e) {
-		cout << " Historique non ouvert " << endl;
+		cout << "Couldn't open file, check if the file is present." << endl;
 	}
+}
+
+void gameFromScratch(int argc, char *argv[]) {
+
+	srand(static_cast<unsigned>(std::time(nullptr)));
+
+	tryOpenHistoryFile();
 
 	// Init le game
 	Game::getGame();
@@ -148,27 +153,14 @@ void gameFromScratch(int argc, char *argv[]) {
 
 void gameFromJson(int argc, char *argv[]) {
 
-	try {
-		std::ifstream file("../src/history.json");
-
-		if (!file.is_open()) {
-			std::cerr << "Failed to open the JSON file." << std::endl;
-			throw SplendorException("Fichier non ouvert");
-		}
-		json hist;
-		file >> hist;
-		file.close();
-		History::getHistory().initHistory(hist);
-	} catch (SplendorException &e) {
-		cout << " Historique non ouvert " << endl;
-	}
+	tryOpenHistoryFile();
 
 	try {
 		std::ifstream file("../src/backup.json");
 
 		if (!file.is_open()) {
 			std::cerr << "Failed to open the JSON file." << std::endl;
-			throw SplendorException("Fichier non ouvert");
+			throw SplendorException("Could not open backup.json");
 		}
 
 		json data;
